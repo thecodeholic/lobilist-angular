@@ -1,7 +1,18 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('lobilistAngular', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr']);
+    angular
+        .module('lobilistAngular', [
+            'ngAnimate',
+            'ngCookies',
+            'ngTouch',
+            'ngSanitize',
+            'ngMessages',
+            'ngAria',
+            'ngResource',
+            'ui.router',
+            'ui.bootstrap',
+            'toastr'
+        ]);
 
 })();
