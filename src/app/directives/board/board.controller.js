@@ -9,17 +9,29 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController(){
+    function BoardController($log){
         var vm = this;
 
+        $log.debug(vm);
         // Data
-        vm.lists = [];
+        vm.title = '';
+        vm.lists = [
+            {
+                title: "something"
+            }
+        ];
 
         // Methods
+        vm.addList = addList;
+
         init();
 
         function init(){
 
+        }
+
+        function addList(){
+            //@todo
         }
     }
 })();

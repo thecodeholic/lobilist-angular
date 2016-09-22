@@ -1,29 +1,49 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('lobilistAngular')
-    .controller('MainController', MainController);
+    angular
+        .module('lobilistAngular')
+        .controller('MainController', MainController);
 
-  /** @ngInject */
-  function MainController($timeout, toastr) {
-    var vm = this;
+    /** @ngInject */
+    function MainController($timeout, toastr, BoardService) {
+        var vm = this;
 
-    vm.classAnimation = '';
-    vm.creationDate = 1474533260419;
-    vm.showToastr = showToastr;
+        // Data
+        vm.selectedBoard = null;
+        vm.boards = [];
+        vm.classAnimation = '';
+        vm.creationDate = 1474533260419;
+        vm.showToastr = showToastr;
 
-    activate();
+        // Methods
+        vm.selectBoard = selectBoard;
 
-    function activate() {
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+
+        init();
+
+        /////////////
+
+        function init() {
+
+            BoardService
+                .getBoards()
+                .then(function(result){
+                    vm.boards = result;
+                    vm.selectedBoard = vm.boards[0];
+                });
+            $timeout(function () {
+                vm.classAnimation = 'rubberBand';
+            }, 4000);
+        }
+
+        function showToastr() {
+            toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
+            vm.classAnimation = '';
+        }
+
+        function selectBoard(board){
+            vm.selectedBoard = board;
+        }
     }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-  }
 })();

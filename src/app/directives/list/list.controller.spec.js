@@ -13,7 +13,16 @@
         }));
 
         it("should have title as string", function(){
-            expect(angular.isString(vm.title)).toBeTruthy();
+            expect(vm.title).toBeString();
         });
+
+        it("should have method addCard()", function(){
+            expect(vm).toHaveMethod('addCard');
+        });
+
+        it("should have cards array", function(){
+            expect(vm).toHaveArray("cards");
+        });
+
     });
 })();

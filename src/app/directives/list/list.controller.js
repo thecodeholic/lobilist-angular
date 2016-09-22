@@ -17,11 +17,16 @@
         vm.cards = [];
 
         // Methods
+        vm.addCard = addCard;
 
         init ();
 
         function init(){
+            // @todo
+        }
 
+        function addCard(){
+            // @todo
         }
     }
 })();

@@ -30,5 +30,8 @@
             expect(vm.classAnimation).toEqual('');
         });
 
+        it("should have method selectBoard()", function(){
+           expect(vm).toHaveMethod('selectBoard');
+        });
     });
 })();
