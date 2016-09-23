@@ -1,0 +1,28 @@
+/**
+ * Created by zura on 9/23/16.
+ */
+(function () {
+    'use strict';
+
+
+    // Initialize Firebase
+    var firebaseConfig = {
+        apiKey: "...",
+        authDomain: "...",
+        databaseURL: "...",
+        storageBucket: "...",
+        messagingSenderId: "..."
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    angular
+        .module('lobilistAngular')
+        .constant('FirebaseConfig', firebaseConfig)
+        .config(config);
+
+    /** @ngInject */
+    function config() {
+        // Enable log
+    }
+
+})();
