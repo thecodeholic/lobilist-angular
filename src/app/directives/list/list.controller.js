@@ -9,10 +9,12 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController(){
+    function ListController($scope, $log, CardService){
         var vm = this;
 
         // Data
+        $log.debug(CardService, $scope);
+        vm.list = $scope.list;
         vm.title = "";
         vm.cards = [];
 
@@ -22,7 +24,11 @@
         init ();
 
         function init(){
-            // @todo
+            CardService
+                .getCardsByListId(1)
+                .then(function(cards){
+                    vm.cards = cards;
+                });
         }
 
         function addCard(){

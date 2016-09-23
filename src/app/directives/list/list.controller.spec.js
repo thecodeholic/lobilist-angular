@@ -5,22 +5,24 @@
     'use strict';
 
     describe('ListController', function () {
-        var vm;
+        var vm,
+            $rootScope;
 
         beforeEach(module('lobilistAngular'));
-        beforeEach(inject(function ($controller) {
-            vm = $controller('ListController');
+        beforeEach(inject(function ($controller, _$rootScope_) {
+            $rootScope = _$rootScope_;
+            vm = $controller("ListController", {$scope: $rootScope.$new()});
         }));
 
-        it("should have title as string", function(){
+        it("should have title as string", function () {
             expect(vm.title).toBeString();
         });
 
-        it("should have method addCard()", function(){
+        it("should have method addCard()", function () {
             expect(vm).toHaveMethod('addCard');
         });
 
-        it("should have cards array", function(){
+        it("should have cards array", function () {
             expect(vm).toHaveArray("cards");
         });
 

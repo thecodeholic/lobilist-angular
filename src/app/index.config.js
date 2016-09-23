@@ -6,7 +6,7 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, toastrConfig, $translateProvider, $translateStaticFilesLoaderProvider) {
+    function config($logProvider, toastrConfig, $translateProvider) {
         // Enable log
         $logProvider.debugEnabled(true);
 

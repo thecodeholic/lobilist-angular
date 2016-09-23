@@ -9,10 +9,9 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController($scope, $log, ListService){
+    function BoardController($scope, ListService){
         var vm = this;
 
-        $log.debug($scope);
         // Data
         vm.board = $scope.board;
         vm.title = '';
@@ -26,9 +25,6 @@
         function init(){
             $scope.$watch('board', function(){
                 vm.board = $scope.board;
-                angular.forEach($scope.board, function (value, key) {
-                    vm[key] = value;
-                });
             });
 
             ListService

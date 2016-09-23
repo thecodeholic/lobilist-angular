@@ -1,23 +1,23 @@
 /**
- * Created by zura on 9/22/2016.
+ * Created by zura on 9/23/2016.
  */
 (function () {
     'use strict';
 
     angular
         .module('lobilistAngular')
-        .directive('lobilistList', LobilistListDirective);
+        .directive('lobilistCard', LobilistCardDirective);
 
     /** @ngInject */
-    function LobilistListDirective() {
+    function LobilistCardDirective() {
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/directives/list/list.html',
+            templateUrl: 'app/directives/card/card.html',
             scope: {
-                list: '=lobiList'
+                card: '=lobiCard'
             },
-            controller: 'ListController',
+            controller: 'CardController',
             controllerAs: 'vm'
         };
     }

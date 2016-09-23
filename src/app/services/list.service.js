@@ -15,23 +15,27 @@
 
         return new ListService();
 
-        function getListsByBoardId(boardId) {
+        function getListsByBoardId() {
             var deferred = $q.defer(),
                 lists = [
                     {
                         id: 1,
+                        boardId: 1,
                         title: "Todo"
                     },
                     {
                         id: 2,
+                        boardId: 1,
                         title: "doing"
                     },
                     {
                         id: 3,
+                        boardId: 1,
                         title: "testing"
                     },
                     {
                         id: 4,
+                        boardId: 1,
                         title: "done"
                     }
                 ];
