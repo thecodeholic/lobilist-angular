@@ -9,7 +9,7 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController($scope, ListService){
+    function BoardController($scope, ListService) {
         var vm = this;
 
         // Data
@@ -22,19 +22,21 @@
 
         init();
 
-        function init(){
-            $scope.$watch('board', function(){
+        function init() {
+            $scope.$watch('board', function () {
                 vm.board = $scope.board;
+                if (vm.board) {
+                    ListService
+                        .getListsByBoardId(vm.board.id)
+                        .then(function (lists) {
+                            vm.lists = lists;
+                        });
+                }
             });
 
-            ListService
-                .getListsByBoardId(1)
-                .then(function(lists){
-                    vm.lists = lists;
-                });
         }
 
-        function addList(){
+        function addList() {
             //@todo
         }
     }

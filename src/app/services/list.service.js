@@ -9,36 +9,17 @@
         .factory('ListService', ListServiceFn);
 
     /** @ngInject */
-    function ListServiceFn($q) {
+    function ListServiceFn($q, $firebaseArray) {
+        var listsRef = firebase.database().ref().child('lists');
         var ListService = function ListService() {};
         ListService.prototype.getListsByBoardId = getListsByBoardId;
 
         return new ListService();
 
-        function getListsByBoardId() {
+        function getListsByBoardId(boardId) {
+
             var deferred = $q.defer(),
-                lists = [
-                    {
-                        id: 1,
-                        boardId: 1,
-                        title: "Todo"
-                    },
-                    {
-                        id: 2,
-                        boardId: 1,
-                        title: "doing"
-                    },
-                    {
-                        id: 3,
-                        boardId: 1,
-                        title: "testing"
-                    },
-                    {
-                        id: 4,
-                        boardId: 1,
-                        title: "done"
-                    }
-                ];
+                lists = $firebaseArray(listsRef.child(boardId));
 
             deferred.resolve(lists);
 

@@ -4,12 +4,15 @@
     describe('MainController', function () {
         var vm;
         var toastr;
+        var $rootScope;
 
         beforeEach(module('lobilistAngular'));
-        beforeEach(inject(function (_$controller_, _toastr_) {
+        beforeEach(inject(function (_$controller_, _$rootScope_, _toastr_) {
             spyOn(_toastr_, 'info').and.callThrough();
 
-            vm = _$controller_('MainController');
+            $rootScope = _$rootScope_;
+
+            vm = _$controller_('MainController', {$scope: $rootScope.$new()});
             toastr = _toastr_;
         }));
 

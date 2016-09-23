@@ -13,7 +13,9 @@
             'ui.router',
             'ui.bootstrap',
             'toastr',
-            'pascalprecht.translate'
+            'pascalprecht.translate',
+
+            'firebase'
         ]);
 
 })();

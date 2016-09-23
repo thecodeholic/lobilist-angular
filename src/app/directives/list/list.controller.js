@@ -13,10 +13,9 @@
         var vm = this;
 
         // Data
-        $log.debug(CardService, $scope);
         vm.list = $scope.list;
         vm.title = "";
-        vm.cards = [];
+        vm.cards = vm.list.cards || [];
 
         // Methods
         vm.addCard = addCard;
@@ -24,11 +23,11 @@
         init ();
 
         function init(){
-            CardService
-                .getCardsByListId(1)
-                .then(function(cards){
-                    vm.cards = cards;
-                });
+            // CardService
+            //     .getCardsByListId(1)
+            //     .then(function(cards){
+            //         vm.cards = cards;
+            //     });
         }
 
         function addCard(){

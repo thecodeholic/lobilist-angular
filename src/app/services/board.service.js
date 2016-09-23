@@ -9,33 +9,29 @@
         .factory('BoardService', BoardServiceFn);
 
     /** @ngInject */
-    function BoardServiceFn($q) {
+    function BoardServiceFn($q, $firebaseArray) {
+        var boardsRef = firebase.database().ref().child('boards');
+
         var BoardService = function BoardService(){};
         BoardService.prototype.getBoards = getBoards;
         return new BoardService();
 
         function getBoards() {
             var deferred = $q.defer(),
-                boards = [
-                    {
-                        id: 1,
-                        title: "Impresico"
-                    },
-                    {
-                        id: 2,
-                        title: "Stg intranet"
-                    },
-                    {
-                        id: 3,
-                        title: "Lobianijs"
-                    },
-                    {
-                        id: 4,
-                        title: "Lobiadmin"
-                    }
-                ];
+                boards = $firebaseArray(boardsRef);
 
-            deferred.resolve(boards);
+            boards.$loaded().then(function(){
+                var newBoards = [];
+                angular.forEach(boards, function (value, key) {
+                    newBoards.push({
+                        id: value.$id,
+                        title: value.title,
+                        cards: value.cards
+                    });
+                });
+                deferred.resolve(newBoards);
+            });
+
 
             return deferred.promise;
         }
