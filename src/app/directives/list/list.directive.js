@@ -10,8 +10,10 @@
 
     /** @ngInject */
     function LobilistListDirective() {
-        var directive = {
+
+        return {
             restrict: 'E',
+            replace: true,
             templateUrl: 'app/directives/list/list.html',
             scope: {
                 lobiList: '='
@@ -25,7 +27,5 @@
                 });
             }
         };
-
-        return directive;
     }
 })();

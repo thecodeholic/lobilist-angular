@@ -1,8 +1,6 @@
 <div class="lobi-board">
     <div>
         <h2>{{vm.title}}</h2>
-        <div ng-repeat="list in vm.lists">
-            <lobilist-list lobi-list="list"></lobilist-list>
-        </div>
+        <lobilist-list ng-repeat="list in vm.lists" lobi-list="list"></lobilist-list>
     </div>
 </div>

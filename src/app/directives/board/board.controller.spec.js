@@ -5,11 +5,13 @@
     'use strict';
 
     describe("BoardController", function () {
-        var vm;
+        var vm,
+            $rootScope;
 
         beforeEach(module('lobilistAngular'));
-        beforeEach(inject(function ($controller) {
-            vm = $controller("BoardController");
+        beforeEach(inject(function ($controller, _$rootScope_) {
+            $rootScope = _$rootScope_;
+            vm = $controller("BoardController", {$scope: $rootScope.$new()});
         }));
 
         it("should have title as string", function () {

@@ -18,21 +18,7 @@
                 board: '=lobiBoard'
             },
             controller: 'BoardController',
-            controllerAs: 'vm',
-            bindToController: true,
-            // compile: function (el, attributes) {
-            //     attributes.$observe('lobiBoard', function (data) {
-            //         console.log("Updated data ", data);
-            //     }, true);
-            //     console.log("Compiling ", arguments);
-            // },
-            // link: function (scope, el, attributes,) {
-            //     scope.$watch(attributes.lobiBoard, function () {
-            //         console.log(attributes.lobiBoard, "aaaaaaaaaaaaaaaaaaaaa");
-            //
-            //
-            //     }, true);
-            // }
+            controllerAs: 'vm'
         };
     }
 })();

@@ -8,7 +8,5 @@
             ng-options="board.title for board in vm.boards track by board.id"
             ng-model="vm.selectedBoard"></select>
 
-    {{vm.selectedBoard}}
-
     <lobilist-board lobi-board="vm.selectedBoard"></lobilist-board>
 </div>

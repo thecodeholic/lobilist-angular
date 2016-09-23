@@ -9,19 +9,14 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController($scope, $log){
+    function BoardController($scope, $log, ListService){
         var vm = this;
 
         $log.debug($scope);
         // Data
         vm.board = $scope.board;
         vm.title = '';
-        vm.lists = [
-            {
-                id: 1,
-                title: "something"
-            }
-        ];
+        vm.lists = [];
 
         // Methods
         vm.addList = addList;
@@ -30,12 +25,17 @@
 
         function init(){
             $scope.$watch('board', function(){
-                console.log("board changed");
                 vm.board = $scope.board;
                 angular.forEach($scope.board, function (value, key) {
                     vm[key] = value;
                 });
             });
+
+            ListService
+                .getListsByBoardId(1)
+                .then(function(lists){
+                    vm.lists = lists;
+                });
         }
 
         function addList(){
