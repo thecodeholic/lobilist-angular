@@ -6,7 +6,7 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($timeout, toastr, BoardService) {
+    function MainController($timeout, toastr, $log, BoardService) {
         var vm = this;
 
         // Data
@@ -26,6 +26,7 @@
 
         function init() {
 
+            $log.debug(BoardService);
             BoardService
                 .getBoards()
                 .then(function(result){

@@ -6,13 +6,14 @@
 
     angular
         .module('lobilistAngular')
-        .factory('ListService', ListService);
+        .factory('ListService', ListServiceFn);
 
     /** @ngInject */
-    function ListService($q) {
-        return {
-            getListsByBoardId: getListsByBoardId
-        };
+    function ListServiceFn($q) {
+        var ListService = function ListService() {};
+        ListService.prototype.getListsByBoardId = getListsByBoardId;
+
+        return new ListService();
 
         function getListsByBoardId(boardId) {
             var deferred = $q.defer(),

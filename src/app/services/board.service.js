@@ -6,15 +6,13 @@
 
     angular
         .module('lobilistAngular')
-        .factory('BoardService', BoardService);
+        .factory('BoardService', BoardServiceFn);
 
     /** @ngInject */
-    function BoardService($q) {
-        var boardServiceData = {
-            getBoards: getBoards
-        };
-        return boardServiceData;
-
+    function BoardServiceFn($q) {
+        var BoardService = function BoardService(){};
+        BoardService.prototype.getBoards = getBoards;
+        return new BoardService();
 
         function getBoards() {
             var deferred = $q.defer(),
