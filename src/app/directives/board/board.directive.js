@@ -12,23 +12,27 @@
     function LobilistBoardDirective() {
         return {
             restrict: 'E',
+            replace: true,
             templateUrl: 'app/directives/board/board.html',
             scope: {
-                lobiBoard: '='
+                board: '=lobiBoard'
             },
             controller: 'BoardController',
             controllerAs: 'vm',
             bindToController: true,
-            link: function (scope, el, attributes, controller) {
-                console.log(arguments);
-
-                scope.$watch(attributes.lobiBoard, function () {
-                    console.log(attributes.lobiBoard);
-                    angular.forEach(controller.lobiBoard, function (value, key) {
-                        controller[key] = value;
-                    });
-                });
-            }
+            // compile: function (el, attributes) {
+            //     attributes.$observe('lobiBoard', function (data) {
+            //         console.log("Updated data ", data);
+            //     }, true);
+            //     console.log("Compiling ", arguments);
+            // },
+            // link: function (scope, el, attributes,) {
+            //     scope.$watch(attributes.lobiBoard, function () {
+            //         console.log(attributes.lobiBoard, "aaaaaaaaaaaaaaaaaaaaa");
+            //
+            //
+            //     }, true);
+            // }
         };
     }
 })();
