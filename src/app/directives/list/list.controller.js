@@ -13,12 +13,16 @@
         var vm = this;
 
         // Data
+        vm.addingNewCard = false;
         vm.list = $scope.list;
         vm.title = "";
         vm.cards = vm.list.cards || [];
+        vm.newCard = {};
 
         // Methods
         vm.addCard = addCard;
+        vm.showAddNewCardForm = showAddNewCardForm;
+        vm.saveNewCard = saveNewCard;
 
         init ();
 
@@ -32,6 +36,14 @@
 
         function addCard(){
             // @todo
+        }
+
+        function showAddNewCardForm(){
+            vm.addingNewCard = true;
+        }
+
+        function saveNewCard(){
+            $log.debug(vm.newCard);
         }
     }
 })();
