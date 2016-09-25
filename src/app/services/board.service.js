@@ -22,7 +22,7 @@
 
             boards.$loaded().then(function(){
                 var newBoards = [];
-                angular.forEach(boards, function (value, key) {
+                angular.forEach(boards, function (value) {
                     newBoards.push({
                         id: value.$id,
                         title: value.title,

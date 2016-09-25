@@ -14,7 +14,10 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/directives/main/main.html',
+            templateUrl: function(el, attributes){
+                var template = attributes.template || "bootstrap";
+                return 'app/directives/main/templates/'+template+'/main.html';
+            },
             scope: {
                 lobiList: '='
             },

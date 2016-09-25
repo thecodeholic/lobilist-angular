@@ -13,7 +13,10 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/directives/list/list.html',
+            templateUrl: function(el, attributes){
+                var template = attributes.template || "bootstrap";
+                return 'app/directives/list/templates/'+template+'/list.html';
+            },
             scope: {
                 list: '=lobiList'
             },

@@ -9,14 +9,13 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($scope, $log, CardService){
+    function ListController($scope, $log){
         var vm = this;
 
         // Data
         vm.addingNewCard = false;
         vm.list = $scope.list;
-        vm.title = "";
-        vm.cards = vm.list.cards || [];
+        vm.cards = vm.list ? vm.list.cards || [] : [];
         vm.newCard = {};
 
         // Methods

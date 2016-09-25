@@ -33,10 +33,10 @@
                     prefix: 'app/directives/list/i18n/',
                     suffix: '.json'
                 },
-                // {
-                //     prefix: 'app/directives/card/i18n/',
-                //     suffix: '.json'
-                // }
+                {
+                    prefix: 'app/directives/card/i18n/',
+                    suffix: '.json'
+                }
             ]
         });
         $translateProvider.preferredLanguage('en');

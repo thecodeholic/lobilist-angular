@@ -13,7 +13,10 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/directives/board/board.html',
+            templateUrl: function(el, attributes){
+                var template = attributes.template || "bootstrap";
+                return 'app/directives/board/templates/'+template+'/board.html';
+            },
             scope: {
                 board: '=lobiBoard'
             },

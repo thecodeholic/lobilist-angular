@@ -14,10 +14,6 @@
             vm = $controller("ListController", {$scope: $rootScope.$new()});
         }));
 
-        it("should have title as string", function () {
-            expect(vm.title).toBeString();
-        });
-
         it("should have method addCard()", function () {
             expect(vm).toHaveMethod('addCard');
         });
