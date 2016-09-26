@@ -26,7 +26,12 @@
             $scope.$watch('board', function () {
                 vm.board = $scope.board;
                 if (vm.board) {
-                    vm.lists = FirebaseService.getListsByBoardId(vm.board.id);
+                    FirebaseService
+                        .getListsByBoardId(vm.board.id)
+                        .then(function(lists){
+                            console.log(vm.board.id, lists);
+                            vm.lists = lists;
+                        });
                 }
             });
 

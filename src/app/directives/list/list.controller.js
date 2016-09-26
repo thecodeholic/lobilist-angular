@@ -9,7 +9,7 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($scope, $log, CardService){
+    function ListController($scope, $log, FirebaseService){
         var vm = this;
 
         // Data
@@ -34,7 +34,7 @@
 
         function addCard(){
             $log.debug(vm.newCard);
-            CardService.save(vm.newCard, vm.list);
+            FirebaseService.addCard(vm.newCard, vm.list);
         }
 
         function showAddNewCardForm(){

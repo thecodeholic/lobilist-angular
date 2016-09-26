@@ -15,25 +15,29 @@
             listsRef = rootRef.child('lists'),
             firebaseBoards = null,
             boards = null,
+            firebaseLists = null,
             lists = null;
 
         return {
+            rootRef: rootRef,
+            boardsRef: boardsRef,
+            listsRef: listsRef,
             getBoards: getBoards,
-            getListsByBoardId: getListsByBoardId
+            getListsByBoardId: getListsByBoardId,
+            addCard: addCard
         };
 
         function getBoards() {
             var deferred = $q.defer();
 
             if (boards === null) {
+                boards = [];
                 firebaseBoards = $firebaseArray(boardsRef);
                 firebaseBoards.$loaded().then(function () {
-                    boards = [];
                     angular.forEach(firebaseBoards, function (value) {
                         boards.push({
                             id: value.$id,
-                            title: value.title,
-                            cards: value.cards
+                            title: value.title
                         });
                     });
                     deferred.resolve(boards);
@@ -46,10 +50,45 @@
         }
 
         function getListsByBoardId(boardId) {
-            if (lists === null){
-                lists = $firebaseArray(listsRef.child(boardId));
+            var deferred = $q.defer();
+
+            if (lists === null || lists[boardId] == null){
+                lists = lists || {};
+                lists[boardId] = [];
+                firebaseLists = $firebaseArray(listsRef.child(boardId));
+                firebaseLists.$loaded().then(function(){
+                    angular.forEach(firebaseLists, function (list) {
+                        lists[boardId].push({
+                            id: list.$id,
+                            boardId: boardId,
+                            title: list.title,
+                            cards: list.cards
+                        });
+                    });
+                    deferred.resolve(lists[boardId]);
+                });
+            } else {
+                deferred.resolve(lists[boardId]);
             }
-            return lists;
+            return deferred.promise;
+        }
+
+        function addCard(cardData, list){
+            var cards = $firebaseArray(listsRef.child(list.boardId).child(list.id).child('cards'));
+            cards.$add(cardData);
+        }
+
+        /**
+         * Find board by id
+         *
+         * @param boardId
+         * @returns {board}
+         */
+        function findBoardById(boardId){
+            var newBoards = boards.filter(function(board){
+                return board.id === boardId;
+            });
+            return newBoards.length > 0 ? newBoards[0] : null;
         }
     }
 })();
