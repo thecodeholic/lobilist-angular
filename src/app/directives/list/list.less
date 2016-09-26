@@ -4,16 +4,48 @@
   white-space: normal;
   padding: @list-padding;
   .lobilist-cards-wrapper {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
   }
-  .lobilist-list{
+  .lobilist-list {
+    margin: 0;
+    background-color: @gray-lighter;
     width: @list-width;
     min-height: 100px;
+
+    md-card-title {
+      padding: 8px 16px;
+    }
+    md-card-title-text {
+      position: relative;
+      md-menu {
+        position: absolute;
+        right: 0;
+        > button {
+          margin: 0;
+        }
+      }
+    }
+
+    .md-headline {
+      font-size: 20px;
+    }
+
+    md-card-content{
+      padding: 12px;
+    }
+
+    md-card-title + md-card-content{
+      padding-top: 0;
+    }
+
+    md-card-actions {
+      margin: 0;
+    }
   }
 
-  .add-new-card-form{
-    textarea{
-      &:focus{
+  .add-new-card-form {
+    textarea {
+      &:focus {
         outline: 0;
       }
     }

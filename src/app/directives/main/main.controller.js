@@ -6,16 +6,16 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope, toastr, $log, FirebaseService) {
+    function MainController($scope, $mdSidenav, $log, FirebaseService) {
         var vm = this;
 
         // Data
         vm.selectedBoard = null;
         vm.boards = [];
-        vm.showToastr = showToastr;
 
         // Methods
         vm.selectBoard = selectBoard;
+        vm.toggleSidenav = toggleSidenav;
 
         init();
 
@@ -31,13 +31,12 @@
                 });
         }
 
-        function showToastr() {
-            toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-            vm.classAnimation = '';
-        }
-
         function selectBoard(board){
             vm.selectedBoard = board;
+        }
+
+        function toggleSidenav(componentId){
+            $mdSidenav(componentId).toggle();
         }
     }
 })();

@@ -6,7 +6,9 @@
         .config(config);
 
     /** @ngInject */
-    function config($logProvider, toastrConfig, $translateProvider) {
+    function config($mdIconProvider, $logProvider, toastrConfig, $translateProvider) {
+        $mdIconProvider.fontSet('md', 'material-icons');
+
         // Enable log
         $logProvider.debugEnabled(true);
 
