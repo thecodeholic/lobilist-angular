@@ -13,10 +13,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: function(el, attributes){
-                var template = attributes.lobiTemplate || "mdl";
-                return 'app/directives/list/templates/'+template+'.list.html';
-            },
+            templateUrl: 'app/directives/list/list.html',
             scope: {
                 list: '=lobiList'
             },

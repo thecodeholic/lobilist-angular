@@ -13,10 +13,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: function(el, attributes){
-                var template = attributes.lobiTemplate || "mdl";
-                return 'app/directives/card/templates/'+template+'.card.html';
-            },
+            templateUrl: 'app/directives/card/card.html',
             scope: {
                 card: '=lobiCard'
             },

@@ -14,11 +14,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: function(el, attributes){
-                console.log(attributes);
-                var template = attributes.lobiTemplate || "mdl";
-                return 'app/directives/main/templates/'+template+'.main.html';
-            },
+            templateUrl: 'app/directives/main/main.html',
             scope: {
                 lobiList: '='
             },
