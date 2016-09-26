@@ -8,16 +8,16 @@
                 <lobilist-card  ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
             </div>
             <form ng-show="vm.addingNewCard">
-                <textarea class="form-control" ng-model="vm.newCard.title"></textarea>
+                <textarea class="form-control" ng-model="vm.newCard.title" placeholder="{{ 'LOBILIST.LIST.NEW_CARD_PLACEHOLDER' | translate }}"></textarea>
             </form>
         </div>
         <div class="panel-footer">
             <button class="btn-link btn-add-new" translate="LOBILIST.LIST.ADD_NEW_CARD_TEXT"
                     ng-show="!vm.addingNewCard"
                     ng-click="vm.showAddNewCardForm()"></button>
-            <button class="btn-btn-primary" translate="LOBILIST.LIST.SAVE_NEW_CARD_TEXT"
+            <button class="btn btn-primary" translate="LOBILIST.LIST.SAVE_NEW_CARD_TEXT"
                     ng-show="vm.addingNewCard"
-                    ng-click="vm.saveNewCard()"></button>
+                    ng-click="vm.addCard()"></button>
         </div>
     </div>
 </div>

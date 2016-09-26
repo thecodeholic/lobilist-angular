@@ -9,7 +9,7 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($scope, $log){
+    function ListController($scope, $log, CardService){
         var vm = this;
 
         // Data
@@ -21,7 +21,6 @@
         // Methods
         vm.addCard = addCard;
         vm.showAddNewCardForm = showAddNewCardForm;
-        vm.saveNewCard = saveNewCard;
 
         init ();
 
@@ -34,15 +33,12 @@
         }
 
         function addCard(){
-            // @todo
+            $log.debug(vm.newCard);
+            CardService.save(vm.newCard, vm.list);
         }
 
         function showAddNewCardForm(){
             vm.addingNewCard = true;
-        }
-
-        function saveNewCard(){
-            $log.debug(vm.newCard);
         }
     }
 })();

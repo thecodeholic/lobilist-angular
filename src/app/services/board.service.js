@@ -10,16 +10,19 @@
 
     /** @ngInject */
     function BoardServiceFn($q, $firebaseArray) {
-        var boardsRef = firebase.database().ref().child('boards');
+        var boards = null,
+            boardsRef = firebase.database().ref().child('boards');
 
-        var BoardService = function BoardService(){};
-        BoardService.prototype.getBoards = getBoards;
-        return new BoardService();
+        return {
+            getBoards: getBoards
+        };
 
         function getBoards() {
-            var deferred = $q.defer(),
-                boards = $firebaseArray(boardsRef);
+            var deferred = $q.defer();
 
+            if (boards === null) {
+                boards = $firebaseArray(boardsRef);
+            }
             boards.$loaded().then(function(){
                 var newBoards = [];
                 angular.forEach(boards, function (value) {
@@ -31,7 +34,6 @@
                 });
                 deferred.resolve(newBoards);
             });
-
 
             return deferred.promise;
         }

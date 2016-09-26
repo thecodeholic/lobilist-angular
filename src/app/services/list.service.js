@@ -9,21 +9,19 @@
         .factory('ListService', ListServiceFn);
 
     /** @ngInject */
-    function ListServiceFn($q, $firebaseArray) {
-        var listsRef = firebase.database().ref().child('lists');
-        var ListService = function ListService() {};
-        ListService.prototype.getListsByBoardId = getListsByBoardId;
+    function ListServiceFn($firebaseArray) {
+        var lists = null,
+            listsRef = firebase.database().ref().child('lists');
 
-        return new ListService();
+        return {
+            getListsByBoardId: getListsByBoardId
+        };
 
         function getListsByBoardId(boardId) {
-
-            var deferred = $q.defer(),
+            if (lists === null){
                 lists = $firebaseArray(listsRef.child(boardId));
-
-            deferred.resolve(lists);
-
-            return deferred.promise;
+            }
+            return lists;
         }
     }
 })();

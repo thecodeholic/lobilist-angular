@@ -6,7 +6,7 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope, toastr, $log, BoardService) {
+    function MainController($scope, toastr, $log, FirebaseService) {
         var vm = this;
 
         // Data
@@ -23,7 +23,7 @@
 
         function init() {
 
-            BoardService
+            FirebaseService
                 .getBoards()
                 .then(function(result){
                     vm.boards = result;

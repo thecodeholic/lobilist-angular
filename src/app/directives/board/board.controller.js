@@ -9,7 +9,7 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController($scope, ListService) {
+    function BoardController($scope, FirebaseService) {
         var vm = this;
 
         // Data
@@ -26,11 +26,7 @@
             $scope.$watch('board', function () {
                 vm.board = $scope.board;
                 if (vm.board) {
-                    ListService
-                        .getListsByBoardId(vm.board.id)
-                        .then(function (lists) {
-                            vm.lists = lists;
-                        });
+                    vm.lists = FirebaseService.getListsByBoardId(vm.board.id);
                 }
             });
 
