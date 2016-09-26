@@ -15,7 +15,7 @@
             replace: true,
             templateUrl: function(el, attributes){
                 var template = attributes.template || "bootstrap";
-                return 'app/directives/card/templates/'+template+'/card.html';
+                return 'app/directives/card/templates/'+template+'.card.html';
             },
             scope: {
                 card: '=lobiCard'

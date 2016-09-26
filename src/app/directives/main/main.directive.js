@@ -15,8 +15,9 @@
             restrict: 'E',
             replace: true,
             templateUrl: function(el, attributes){
-                var template = attributes.template || "bootstrap";
-                return 'app/directives/main/templates/'+template+'/main.html';
+                console.log(attributes);
+                var template = attributes.lobiTemplate || "bootstrap";
+                return 'app/directives/main/templates/'+template+'.main.html';
             },
             scope: {
                 lobiList: '='

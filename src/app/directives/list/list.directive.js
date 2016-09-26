@@ -15,7 +15,7 @@
             replace: true,
             templateUrl: function(el, attributes){
                 var template = attributes.template || "bootstrap";
-                return 'app/directives/list/templates/'+template+'/list.html';
+                return 'app/directives/list/templates/'+template+'.list.html';
             },
             scope: {
                 list: '=lobiList'

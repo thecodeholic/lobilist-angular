@@ -15,7 +15,7 @@
             replace: true,
             templateUrl: function(el, attributes){
                 var template = attributes.template || "bootstrap";
-                return 'app/directives/board/templates/'+template+'/board.html';
+                return 'app/directives/board/templates/'+template+'.board.html';
             },
             scope: {
                 board: '=lobiBoard'
