@@ -1,23 +1,21 @@
-.lobilist-list{
+.lobilist-list-wrapper {
   display: inline-block;
   vertical-align: top;
   white-space: normal;
-  width: @list-width;
   padding: @list-padding;
-  .panel{
-    border-radius: 0;
-    .panel-heading{
-      .border-top-radius(0);
-    }
-    .panel-footer{
-      .border-bottom-radius(0);
-    }
+  .lobilist-cards-wrapper {
+    margin-bottom: 8px;
   }
-  .panel-body{
-    padding: 8px;
+  .lobilist-list{
+    width: @list-width;
+    min-height: 100px;
+  }
 
-    .lobilist-cards-wrapper{
-      margin-bottom: 8px;
+  .add-new-card-form{
+    textarea{
+      &:focus{
+        outline: 0;
+      }
     }
   }
 }

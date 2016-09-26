@@ -16,7 +16,7 @@
             replace: true,
             templateUrl: function(el, attributes){
                 console.log(attributes);
-                var template = attributes.lobiTemplate || "bootstrap";
+                var template = attributes.lobiTemplate || "mdl";
                 return 'app/directives/main/templates/'+template+'.main.html';
             },
             scope: {

@@ -1,19 +1,29 @@
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Welcome</h2>
-    </div>
-    <div class="mdl-card__supporting-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Mauris sagittis pellentesque lacus eleifend lacinia...
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-            Get Started
-        </a>
-    </div>
-    <div class="mdl-card__menu">
-        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">share</i>
-        </button>
+<div class="lobilist-list-wrapper">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp lobilist-list">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">{{vm.list.title}}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            <div class="lobilist-cards-wrapper">
+                <lobilist-card ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
+            </div>
+            <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard">
+                <div class="mdl-textfield mdl-js-textfield">
+                    <textarea class="mdl-textfield__input" type="text" ng-model="vm.newCard.title"
+                          placeholder="{{ 'LOBILIST.LIST.NEW_CARD_PLACEHOLDER' | translate }}"></textarea>
+                    <label class="mdl-textfield__label">{{ 'LOBILIST.LIST.NEW_CARD_PLACEHOLDER' | translate }}</label>
+                </div>
+            </form>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect"
+                    translate="LOBILIST.LIST.ADD_NEW_CARD_TEXT"
+                    ng-show="!vm.addingNewCard"
+                    ng-click="vm.showAddNewCardForm()"></button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                    translate="LOBILIST.LIST.SAVE_NEW_CARD_TEXT"
+                    ng-show="vm.addingNewCard"
+                    ng-click="vm.addCard()"></button>
+        </div>
     </div>
 </div>

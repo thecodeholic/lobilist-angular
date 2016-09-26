@@ -14,7 +14,7 @@
             restrict: 'E',
             replace: true,
             templateUrl: function(el, attributes){
-                var template = attributes.template || "bootstrap";
+                var template = attributes.lobiTemplate || "mdl";
                 return 'app/directives/board/templates/'+template+'.board.html';
             },
             scope: {
