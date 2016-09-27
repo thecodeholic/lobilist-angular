@@ -9,7 +9,7 @@
         .controller('BoardController', BoardController);
 
     /** @ngInject */
-    function BoardController($scope, FirebaseService) {
+    function BoardController($scope, $rootScope, FirebaseService) {
         var vm = this;
 
         // Data
@@ -25,13 +25,14 @@
         function init() {
             $scope.$watch('board', function () {
                 vm.board = $scope.board;
-                if (vm.board) {
-                    FirebaseService
-                        .getListsByBoardId(vm.board.id)
-                        .then(function(lists){
-                            vm.lists = lists;
-                        });
-                }
+                vm.lists = FirebaseService.getListsByBoardId(vm.board ? vm.board.$id : null);
+            });
+
+
+            $rootScope.$on('userStateChange', function($event, user){
+                 if (!user){
+                     vm.lists.$destroy();
+                 }
             });
 
         }

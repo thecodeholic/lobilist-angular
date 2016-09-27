@@ -13,12 +13,7 @@
         var rootRef = firebase.database().ref(),
             boardsRef = rootRef.child('boards'),
             listsRef = rootRef.child('lists'),
-            firebaseBoards = null,
-            boards = null,
-            firebaseLists = null,
-            lists = null;
-
-        init();
+            cardsRef = rootRef.child('cards');
 
         return {
             rootRef: rootRef,
@@ -26,79 +21,19 @@
             listsRef: listsRef,
             getBoards: getBoards,
             getListsByBoardId: getListsByBoardId,
-            addCard: addCard
+            getCardsByBoardAndListId: getCardsByBoardAndListId
         };
 
-        function init(){
-            $rootScope.$on('userStateChange', function($event, user){
-                 if (!user){
-                     if (firebaseBoards){
-                         firebaseBoards.$destroy();
-                     }
-                     if (firebaseLists){
-                         firebaseLists.$destroy();
-                     }
-                 }
-            });
-        }
-
         function getBoards() {
-            var deferred = $q.defer();
-
-            if (boards === null) {
-                boards = [];
-                firebaseBoards = $firebaseArray(boardsRef);
-                firebaseBoards.$loaded().then(function () {
-                    angular.forEach(firebaseBoards, function (value) {
-                        boards.push({
-                            id: value.$id,
-                            title: value.title
-                        });
-                    });
-                    deferred.resolve(boards);
-                });
-            } else {
-                deferred.resolve(boards);
-            }
-
-            return deferred.promise;
+            return $firebaseArray(boardsRef);
         }
 
         function getListsByBoardId(boardId) {
-            var deferred = $q.defer();
-
-            if (lists === null || lists[boardId] == null) {
-                lists = lists || {};
-                lists[boardId] = [];
-                firebaseLists = $firebaseArray(listsRef.child(boardId));
-                firebaseLists
-                    .$loaded()
-                    .then(function () {
-                        angular.forEach(firebaseLists, function (list) {
-                            lists[boardId].push({
-                                id: list.$id,
-                                boardId: boardId,
-                                title: list.title,
-                                cards: list.cards
-                            });
-                        });
-                        deferred.resolve(lists[boardId]);
-                    }, function(){
-                        console.log("eeeeeeeeeeeeeerrrrrrrrrrrrrrrrrorrrrrrrrrrrrrrr", arguments);
-                    });
-            } else {
-                deferred.resolve(lists[boardId]);
-            }
-            return deferred.promise;
+            return boardId ? $firebaseArray(listsRef.child(boardId)) : null;
         }
 
-        function addCard(cardData, list) {
-            var cards = $firebaseArray(listsRef.child(list.boardId).child(list.id).child('cards'));
-            return cards
-                .$add(cardData)
-                .then(function(ref){
-                    cardData.id = ref.key;
-                });
+        function getCardsByBoardAndListId(boardId, listId){
+            return boardId && listId ? $firebaseArray(cardsRef.child(boardId+"/"+listId)) : null;
         }
 
         /**

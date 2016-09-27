@@ -6,7 +6,7 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController(FirebaseService, currentAuth) {
+    function DashboardController($rootScope, FirebaseService, $firebaseArray, currentAuth) {
         var vm = this;
 
         // Data
@@ -21,16 +21,18 @@
         /////////////
 
         function init() {
-
-            FirebaseService
-                .getBoards()
-                .then(function(result){
-                    vm.boards = result;
-                    vm.selectedBoard = vm.boards[0];
-                });
+            vm.boards = FirebaseService.getBoards();
+            vm.boards.$loaded().then(function(){
+                vm.selectedBoard = vm.boards[0];
+            });
+            $rootScope.$on('userStateChange', function($event, user){
+                 if (!user){
+                     vm.boards.$destroy();
+                 }
+            });
         }
 
-        function selectBoard(board){
+        function selectBoard(board) {
             vm.selectedBoard = board;
         }
 

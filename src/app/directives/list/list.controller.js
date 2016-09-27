@@ -9,13 +9,14 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($scope, $log, FirebaseService){
+    function ListController($rootScope, $scope, $log, FirebaseService){
         var vm = this;
 
         // Data
+        vm.boardController = $scope.$parent.$parent.vm;
         vm.addingNewCard = false;
         vm.list = $scope.list;
-        vm.cards = vm.list ? vm.list.cards || [] : [];
+        vm.cards = FirebaseService.getCardsByBoardAndListId(vm.boardController.board.$id, vm.list.$id);
         vm.newCard = {};
 
         // Methods
@@ -25,21 +26,18 @@
         init ();
 
         function init(){
-            // CardService
-            //     .getCardsByListId(1)
-            //     .then(function(cards){
-            //         vm.cards = cards;
-            //     });
+            $rootScope.$on('userStateChange', function($event, user){
+                 if (!user){
+                     vm.cards.$destroy();
+                 }
+            });
         }
 
         function addCard(){
             $log.debug(vm.newCard);
-            FirebaseService
-                .addCard(vm.newCard, vm.list)
-                .then(function(){
-                    vm.addingNewCard = false;
-                    vm.list.cards[vm.newCard.id] = vm.newCard;
-                });
+
+            vm.addingNewCard = false;
+            vm.cards.$add(vm.newCard);
         }
 
         function showAddNewCardForm(){
