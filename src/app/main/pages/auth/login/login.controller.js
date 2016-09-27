@@ -9,7 +9,7 @@
         .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController($scope, $state, AuthService, $log){
+    function LoginController(AuthService, $firebaseAuth, $log){
         var vm = this;
 
         // Data
@@ -26,7 +26,7 @@
         }
 
         function loginWithGoogle(){
-            var provider = new firebase.auth.GoogleAuthProvider();
+            var provider = new $firebaseAuth.GoogleAuthProvider();
 
             AuthService
                 .$signInWithPopup(provider)

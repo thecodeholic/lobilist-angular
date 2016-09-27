@@ -21,8 +21,13 @@
         .config(config);
 
     /** @ngInject */
-    function config() {
-        // Enable log
+    function config($firebaseRefProvider) {
+        $firebaseRefProvider.registerUrl({
+            default: firebaseConfig.databaseURL,
+            boards: firebaseConfig.databaseURL + "/boards",
+            lists: firebaseConfig.databaseURL + "/lists",
+            cards: firebaseConfig.databaseURL + "/cards"
+        })
     }
 
 })();

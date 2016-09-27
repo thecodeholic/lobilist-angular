@@ -11,7 +11,12 @@
         beforeEach(module('lobilistAngular'));
         beforeEach(inject(function ($controller, _$rootScope_) {
             $rootScope = _$rootScope_;
-            vm = $controller("ListController", {$scope: $rootScope.$new()});
+            var $scope = $rootScope.$new();
+            $scope.list = {
+                $id: 90,
+                title: 'Some list title'
+            };
+            vm = $controller("ListController", {$scope: $scope});
         }));
 
         it("should have method addCard()", function () {

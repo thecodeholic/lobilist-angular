@@ -12,6 +12,7 @@
     function LobilistListDirective() {
         return {
             restrict: 'E',
+            transclude: true,
             replace: true,
             templateUrl: 'app/directives/list/list.html',
             scope: {

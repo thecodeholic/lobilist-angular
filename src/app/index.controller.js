@@ -9,8 +9,8 @@
         .controller('IndexController', IndexController);
 
     /** @ngInject */
-    function IndexController($rootScope, UserService, AuthService, $state, $log) {
-        var vm = this;
+    function IndexController($scope, $rootScope, UserService, AuthService, $state) {
+        // var vm = this;
 
         // Data
         $rootScope.UserService = UserService;
@@ -22,13 +22,16 @@
         ///////////
 
         function init() {
-            $rootScope.$on('userStateChange', function($event, user){
+
+
+            var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
                 if (user){
                     $state.go(AuthService.dashboardState);
                 } else {
                     $state.go(AuthService.loginState);
                 }
             });
+            $scope.$on('$destroy', userStateChangeFn);
         }
     }
 })();

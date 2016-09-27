@@ -6,12 +6,12 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController($rootScope, FirebaseService, $firebaseArray, currentAuth) {
+    function DashboardController($rootScope, $state, $stateParams, $scope, FirebaseService) {
         var vm = this;
 
         // Data
         vm.selectedBoard = null;
-        vm.boards = [];
+        vm.boards = FirebaseService.getBoards();
 
         // Methods
         vm.selectBoard = selectBoard;
@@ -21,19 +21,29 @@
         /////////////
 
         function init() {
-            vm.boards = FirebaseService.getBoards();
             vm.boards.$loaded().then(function(){
-                vm.selectedBoard = vm.boards[0];
+                if (!$stateParams.boardId){
+                    vm.selectedBoard = vm.boards[0];
+                    updateState();
+                } else {
+                    vm.selectedBoard = vm.boards.$getRecord($stateParams.boardId);
+                }
             });
-            $rootScope.$on('userStateChange', function($event, user){
+            var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
                  if (!user){
                      vm.boards.$destroy();
                  }
             });
+            $scope.$on('$destroy', userStateChangeFn);
         }
 
         function selectBoard(board) {
             vm.selectedBoard = board;
+            updateState();
+        }
+
+        function updateState(){
+            $state.go($state.current, {boardId: vm.selectedBoard.$id}, {notify: false});
         }
 
     }

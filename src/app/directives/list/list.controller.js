@@ -9,14 +9,13 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($rootScope, $scope, $log, FirebaseService){
+    function ListController($rootScope, $scope, $stateParams, $log, CardService){
         var vm = this;
 
         // Data
-        vm.boardController = $scope.$parent.$parent.vm;
         vm.addingNewCard = false;
         vm.list = $scope.list;
-        vm.cards = FirebaseService.getCardsByBoardAndListId(vm.boardController.board.$id, vm.list.$id);
+        vm.cards = CardService.getCards($stateParams.boardId, vm.list.$id);
         vm.newCard = {};
 
         // Methods
@@ -26,11 +25,12 @@
         init ();
 
         function init(){
-            $rootScope.$on('userStateChange', function($event, user){
+            var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
                  if (!user){
                      vm.cards.$destroy();
                  }
             });
+            $scope.$on('$destroy', userStateChangeFn);
         }
 
         function addCard(){
