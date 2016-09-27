@@ -6,7 +6,7 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController($scope, $mdSidenav, $log, FirebaseService) {
+    function DashboardController(FirebaseService, currentAuth) {
         var vm = this;
 
         // Data
@@ -15,7 +15,6 @@
 
         // Methods
         vm.selectBoard = selectBoard;
-        vm.toggleSidenav = toggleSidenav;
 
         init();
 
@@ -35,8 +34,5 @@
             vm.selectedBoard = board;
         }
 
-        function toggleSidenav(componentId){
-            $mdSidenav(componentId).toggle();
-        }
     }
 })();

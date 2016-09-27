@@ -8,14 +8,18 @@
     /** @ngInject */
     function routerConfig($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/dashboard');
+        $urlRouterProvider.otherwise('/login');
 
         $stateProvider
             .state('app', {
                 abstract: true,
                 views: {
                     'main@': {
-                        templateUrl: 'app/layouts/content_only.html'
+                        templateUrl: 'app/layouts/default.html'
+                    },
+                    'toolbar@app': {
+                        templateUrl: 'app/toolbar/toolbar.html',
+                        controller: 'ToolbarController as vm'
                     }
                 }
             });

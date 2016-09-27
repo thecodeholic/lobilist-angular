@@ -1,7 +1,10 @@
 {
   "LOBILIST.MAIN": {
-    "BOARDS_TITLE": "Boards",
     "SEARCH_BOARDS_INPUT_PLACEHOLDER": "Type text to search board"
+  },
+  "TOOLBAR": {
+    "BOARDS_TITLE": "Boards",
+    "LOGOUT": "Logout"
   },
   "LOBILIST.BOARD": {
     "ADD_NEW_LIST_TEXT": "Add a list"

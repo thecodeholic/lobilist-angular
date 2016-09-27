@@ -9,7 +9,7 @@
         .factory('FirebaseService', FirebaseServiceFn);
 
     /** @ngInject */
-    function FirebaseServiceFn($q, $firebaseArray) {
+    function FirebaseServiceFn($q, $firebaseArray, $state, $log) {
         var rootRef = firebase.database().ref(),
             boardsRef = rootRef.child('boards'),
             listsRef = rootRef.child('lists'),
@@ -17,6 +17,8 @@
             boards = null,
             firebaseLists = null,
             lists = null;
+
+        $log.debug("firebase service initialized");
 
         return {
             rootRef: rootRef,

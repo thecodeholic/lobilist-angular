@@ -1,1 +1,44 @@
-Login Page
+<div id="login-page" layout="row" layout-align="center center" style="height: 100%">
+    <form name="loginForm" class="md-whiteframe-8dp">
+
+        <h3 class="md-headline text-center">{{'LOGIN.LOGIN_TITLE' | translate}}</h3>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>{{'LOGIN.EMAIL_TEXT' | translate}}</label>
+            <md-icon>email</md-icon>
+            <input type="email" ng-model="vm.email">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>{{'LOGIN.PASSWORD_TEXT' | translate}}</label>
+            <md-icon>lock_open</md-icon>
+            <input ng-model="vm.password">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <md-checkbox ng-model="vm.remember" aria-label="{{'LOGIN.REMEMBER_ME' | translate}}">
+                {{'LOGIN.REMEMBER_ME' | translate}}
+            </md-checkbox>
+        </md-input-container>
+
+        <md-button id="login-button" class="md-accent md-raised">{{'LOGIN.LOGIN_BUTTON' | translate}}</md-button>
+
+        <div class="login-page-or-separator">{{'LOGIN.OR_LOGIN_TEXT' | translate}}</div>
+
+        <div class="text-center vendor-login-buttons">
+            <md-button class="md-accent md-raised vendor-login-button login-with-google" ng-click="vm.loginWithGoogle()">
+                Google
+            </md-button>
+            <!--<md-button class="md-accent md-raised vendor-login-button login-with-facebook" ng-click="vm.loginWithFacebook()">-->
+                <!--Facebook-->
+            <!--</md-button>-->
+            <!--<md-button class="md-accent md-raised vendor-login-button login-with-twitter" ng-click="vm.loginWithTwitter()">-->
+                <!--Twitter-->
+            <!--</md-button>-->
+            <!--<md-button class="md-accent md-raised vendor-login-button login-with-github" ng-click="vm.loginWithGithub()">-->
+                <!--Github-->
+            <!--</md-button>-->
+        </div>
+
+    </form>
+</div>

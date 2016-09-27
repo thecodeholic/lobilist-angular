@@ -1,0 +1,33 @@
+<div layout="row" layout-align="start center">
+    <div layout="row" layout-align="start center" flex>
+        <div class="md-toolbar-tools">
+            <md-button ng-click="vm.toggleSidenav('boards-sidenav')">
+                <md-icon>dashboard</md-icon>
+                {{'TOOLBAR.BOARDS_TITLE' | translate}}
+            </md-button>
+        </div>
+
+    </div>
+    <div layout="row" layout-align="start center">
+        <md-menu md-position-mode="left bottom" class="user-profile-menu">
+            <md-button ng-click="$mdOpenMenu($event)" class="profile-button">
+                <div layout="row" layout-align="space-between center">
+                    <div class="avatar-wrapper">
+                        <img ng-src="{{$root.UserService.current.photoURL}}" class="md-avatar"
+                             alt="{{$root.UserService.current.displayName}}"/>
+                    </div>
+                    <span>{{$root.UserService.current.displayName}}</span>
+                    <md-icon>keyboard_arrow_down</md-icon>
+                </div>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item ng-click="vm.logout()">
+                    <md-button>
+                        <md-icon>forward</md-icon>
+                        {{'TOOLBAR.LOGOUT' | translate}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+</div>

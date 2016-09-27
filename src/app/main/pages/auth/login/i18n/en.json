@@ -1,0 +1,10 @@
+{
+  "LOGIN": {
+    "LOGIN_TITLE": "Login to Lobilist",
+    "EMAIL_TEXT": "Email address",
+    "PASSWORD_TEXT": "Password",
+    "REMEMBER_ME": "Remember me",
+    "LOGIN_BUTTON": "Login",
+    "OR_LOGIN_TEXT": "Or login with"
+  }
+}

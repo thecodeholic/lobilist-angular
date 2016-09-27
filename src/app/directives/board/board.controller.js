@@ -29,7 +29,6 @@
                     FirebaseService
                         .getListsByBoardId(vm.board.id)
                         .then(function(lists){
-                            console.log(vm.board.id, lists);
                             vm.lists = lists;
                         });
                 }
