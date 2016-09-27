@@ -9,7 +9,7 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($state, $mdSidenav, AuthService) {
+    function ToolbarController($mdSidenav, AuthService) {
         var vm = this;
 
         // Data
@@ -28,7 +28,6 @@
         }
 
         function logout() {
-            $state.go(AuthService.loginState);
             AuthService.$signOut();
         }
 

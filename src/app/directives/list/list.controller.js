@@ -34,7 +34,12 @@
 
         function addCard(){
             $log.debug(vm.newCard);
-            FirebaseService.addCard(vm.newCard, vm.list);
+            FirebaseService
+                .addCard(vm.newCard, vm.list)
+                .then(function(){
+                    vm.addingNewCard = false;
+                    vm.list.cards[vm.newCard.id] = vm.newCard;
+                });
         }
 
         function showAddNewCardForm(){

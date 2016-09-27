@@ -9,7 +9,7 @@
         .factory('FirebaseService', FirebaseServiceFn);
 
     /** @ngInject */
-    function FirebaseServiceFn($q, $firebaseArray, $state, $log) {
+    function FirebaseServiceFn($rootScope, $q, $firebaseArray) {
         var rootRef = firebase.database().ref(),
             boardsRef = rootRef.child('boards'),
             listsRef = rootRef.child('lists'),
@@ -18,7 +18,7 @@
             firebaseLists = null,
             lists = null;
 
-        $log.debug("firebase service initialized");
+        init();
 
         return {
             rootRef: rootRef,
@@ -28,6 +28,19 @@
             getListsByBoardId: getListsByBoardId,
             addCard: addCard
         };
+
+        function init(){
+            $rootScope.$on('userStateChange', function($event, user){
+                 if (!user){
+                     if (firebaseBoards){
+                         firebaseBoards.$destroy();
+                     }
+                     if (firebaseLists){
+                         firebaseLists.$destroy();
+                     }
+                 }
+            });
+        }
 
         function getBoards() {
             var deferred = $q.defer();
@@ -54,30 +67,38 @@
         function getListsByBoardId(boardId) {
             var deferred = $q.defer();
 
-            if (lists === null || lists[boardId] == null){
+            if (lists === null || lists[boardId] == null) {
                 lists = lists || {};
                 lists[boardId] = [];
                 firebaseLists = $firebaseArray(listsRef.child(boardId));
-                firebaseLists.$loaded().then(function(){
-                    angular.forEach(firebaseLists, function (list) {
-                        lists[boardId].push({
-                            id: list.$id,
-                            boardId: boardId,
-                            title: list.title,
-                            cards: list.cards
+                firebaseLists
+                    .$loaded()
+                    .then(function () {
+                        angular.forEach(firebaseLists, function (list) {
+                            lists[boardId].push({
+                                id: list.$id,
+                                boardId: boardId,
+                                title: list.title,
+                                cards: list.cards
+                            });
                         });
+                        deferred.resolve(lists[boardId]);
+                    }, function(){
+                        console.log("eeeeeeeeeeeeeerrrrrrrrrrrrrrrrrorrrrrrrrrrrrrrr", arguments);
                     });
-                    deferred.resolve(lists[boardId]);
-                });
             } else {
                 deferred.resolve(lists[boardId]);
             }
             return deferred.promise;
         }
 
-        function addCard(cardData, list){
+        function addCard(cardData, list) {
             var cards = $firebaseArray(listsRef.child(list.boardId).child(list.id).child('cards'));
-            cards.$add(cardData);
+            return cards
+                .$add(cardData)
+                .then(function(ref){
+                    cardData.id = ref.key;
+                });
         }
 
         /**
@@ -86,8 +107,8 @@
          * @param boardId
          * @returns {board}
          */
-        function findBoardById(boardId){
-            var newBoards = boards.filter(function(board){
+        function findBoardById(boardId) {
+            var newBoards = boards.filter(function (board) {
                 return board.id === boardId;
             });
             return newBoards.length > 0 ? newBoards[0] : null;
