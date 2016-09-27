@@ -8,12 +8,11 @@
                         <md-icon>more_vert</md-icon>
                     </md-button>
                     <md-menu-content width="4">
-                        <md-menu-item ng-repeat="item in [1, 2, 3]">
-                            <md-button ng-click="ctrl.announceClick($index)">
+                        <md-menu-item >
+                            <md-button ng-click="vm.archiveList(list)">
                                 <div layout="row" flex>
-                                    <p flex>Option {{item}}</p>
-                                    <md-icon md-menu-align-target md-svg-icon="call:portable-wifi-off"
-                                             style="margin: auto 3px auto 0;"></md-icon>
+                                    <md-icon>archive</md-icon>
+                                    <p flex>{{'LOBILIST.LIST.ARCHIVE_LIST_TEXT' | translate}}</p>
                                 </div>
                             </md-button>
                         </md-menu-item>
@@ -27,7 +26,7 @@
             </div>
             <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard" name="newCardForm">
                 <md-input-container class="md-block">
-                    <textarea ng-model="vm.newCard.title" md-maxlength="150" rows="5" md-select-on-focus
+                    <textarea ng-model="vm.newCard.title" md-maxlength="150" rows="3" md-select-on-focus
                               placeholder="{{ 'LOBILIST.LIST.NEW_CARD_PLACEHOLDER' | translate }}">
                     </textarea>
                 </md-input-container>

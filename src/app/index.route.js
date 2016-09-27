@@ -1,21 +1,25 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('lobilistAngular')
-    .config(routerConfig);
+    angular
+        .module('lobilistAngular')
+        .config(routerConfig);
 
-  /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'vm'
-      });
+    /** @ngInject */
+    function routerConfig($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
-  }
+        $urlRouterProvider.otherwise('/dashboard');
+
+        $stateProvider
+            .state('app', {
+                abstract: true,
+                views: {
+                    'main@': {
+                        templateUrl: 'app/layouts/content_only.html'
+                    }
+                }
+            });
+
+    }
 
 })();

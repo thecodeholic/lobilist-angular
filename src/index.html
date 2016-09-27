@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="lobilistAngular">
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <title>lobilistAngular</title>
     <meta name="description" content="">
@@ -26,7 +27,7 @@
   <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<lobilist-main></lobilist-main>
+<div ui-view="main"></div>
 
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->

@@ -3,10 +3,10 @@
 
     angular
         .module('lobilistAngular')
-        .controller('MainController', MainController);
+        .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function MainController($scope, $mdSidenav, $log, FirebaseService) {
+    function DashboardController($scope, $mdSidenav, $log, FirebaseService) {
         var vm = this;
 
         // Data

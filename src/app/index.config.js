@@ -6,8 +6,10 @@
         .config(config);
 
     /** @ngInject */
-    function config($mdIconProvider, $logProvider, toastrConfig, $translateProvider) {
+    function config($mdIconProvider, $logProvider, toastrConfig, $translateProvider, $locationProvider) {
         $mdIconProvider.fontSet('md', 'material-icons');
+
+        $locationProvider.html5Mode(true);
 
         // Enable log
         $logProvider.debugEnabled(true);
@@ -21,25 +23,8 @@
 
 
         $translateProvider.useSanitizeValueStrategy('sanitize');
-        $translateProvider.useStaticFilesLoader({
-            files: [
-                {
-                    prefix: 'app/directives/main/i18n/',
-                    suffix: '.json'
-                },
-                {
-                    prefix: 'app/directives/board/i18n/',
-                    suffix: '.json'
-                },
-                {
-                    prefix: 'app/directives/list/i18n/',
-                    suffix: '.json'
-                },
-                {
-                    prefix: 'app/directives/card/i18n/',
-                    suffix: '.json'
-                }
-            ]
+        $translateProvider.useLoader('$translatePartialLoader', {
+            urlTemplate: '/{part}/i18n/{lang}.json'
         });
         $translateProvider.preferredLanguage('en');
     }

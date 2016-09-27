@@ -1,0 +1,15 @@
+{
+  "LOBILIST.MAIN": {
+    "BOARDS_TITLE": "Boards",
+    "SEARCH_BOARDS_INPUT_PLACEHOLDER": "Type text to search board"
+  },
+  "LOBILIST.BOARD": {
+    "ADD_NEW_LIST_TEXT": "Add a list"
+  },
+  "LOBILIST.LIST": {
+    "ADD_NEW_CARD_TEXT": "Add a card",
+    "SAVE_NEW_CARD_TEXT": "Add",
+    "NEW_CARD_PLACEHOLDER": "New card title",
+    "ARCHIVE_LIST_TEXT": "Archive"
+  }
+}

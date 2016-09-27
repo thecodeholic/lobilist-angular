@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    describe('MainController', function () {
+    describe('DashboardController', function () {
         var vm;
         var toastr;
         var $rootScope;
@@ -12,7 +12,7 @@
 
             $rootScope = _$rootScope_;
 
-            vm = _$controller_('MainController', {$scope: $rootScope.$new()});
+            vm = _$controller_('DashboardController', {$scope: $rootScope.$new()});
             toastr = _toastr_;
         }));
 

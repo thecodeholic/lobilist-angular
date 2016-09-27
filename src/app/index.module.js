@@ -14,7 +14,10 @@
             'toastr',
             'pascalprecht.translate',
 
-            'firebase'
+            'firebase',
+
+            'app.dashboard',
+            'app.pages'
         ]);
 
 })();
