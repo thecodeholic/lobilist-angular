@@ -1,10 +1,16 @@
 {
-  "MAIN": {
-    "SEARCH_BOARDS_INPUT_PLACEHOLDER": "Type text to search board"
+  "BOARDS": {
+    "SEARCH_BOARDS_INPUT_PLACEHOLDER": "Type text to search board",
+    "CURRENT_BOARDS": "Current Boards",
+    "BOARD_ACTIONS": "Actions",
+    "CREATE_BOARD": "Create a new board",
+    "ADD_BOARD": "Add a board",
+    "TYPE_NEW_BOARD_TITLE": "Type title for a new board"
   },
   "TOOLBAR": {
     "BOARDS_TITLE": "Boards",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "BOARD_SETTING": "Board Settings"
   },
   "BOARD": {
     "ADD_NEW_LIST_TEXT": "Add a list"

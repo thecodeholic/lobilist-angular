@@ -24,6 +24,10 @@
                     'boards@app': {
                         templateUrl: 'app/sidenavs/boards/boards.html',
                         controller: 'BoardsController as vm'
+                    },
+                    'boardSettings@app': {
+                        templateUrl: 'app/sidenavs/board-settings/board-settings.html',
+                        controller: 'BoardSettingsController as vm'
                     }
                 }
             });

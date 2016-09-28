@@ -11,6 +11,10 @@
     /** @ngInject */
     function BoardService(FirebaseService) {
         var boards = FirebaseService.getBoards();
+
+        boards.$loaded().then(function(){
+            console.log(arguments, "loadedddddddd");
+        });
         return {
             boards : boards
         };

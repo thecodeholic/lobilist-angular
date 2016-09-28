@@ -3,8 +3,11 @@
 
     <md-content id="content" class="animate-slide-up md-hue-2" flex>
 
-        <md-sidenav id="boards-sidenav" md-component-id="boards-sidenav" class="boards-sidenav"
-                    ui-view="boards"></md-sidenav>
+        <md-sidenav id="boards-sidenav" md-component-id="boards-sidenav" ui-view="boards"></md-sidenav>
+
         <div class="lobilist-main" layout="column" ui-view="content"></div>
+
+        <md-sidenav id="board-settings" md-component-id="board-settings-sidenav" ui-view="boardSettings"></md-sidenav>
+
     </md-content>
 </div>
