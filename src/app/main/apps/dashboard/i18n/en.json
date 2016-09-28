@@ -15,6 +15,9 @@
   "BOARD": {
     "ADD_NEW_LIST_TEXT": "Add a list"
   },
+  "BOARD_SETTINGS": {
+    "BOARD_SETTINGS": "Board Settings"
+  },
   "LIST": {
     "ADD_NEW_CARD_TEXT": "Add a card",
     "SAVE_NEW_CARD_TEXT": "Add",
@@ -22,6 +25,8 @@
     "ARCHIVE_LIST_TEXT": "Archive",
     "CANCEL_CARD": "Cancel"
   },
+
+
   "ADD_TEXT": "Add",
   "CANCEL_TEXT": "Cancel"
 }

@@ -1,42 +1,40 @@
-<md-content layout-padding>
-    <form name="searchBoardForm">
-        <md-input-container class="md-block">
-            <label>{{'BOARDS.SEARCH_BOARDS_INPUT_PLACEHOLDER' | translate}}</label>
-            <input ng-model="vm.searchBoardTitle">
-        </md-input-container>
-    </form>
+<form name="searchBoardForm" class="search-boards-form">
+    <md-input-container class="md-block">
+        <label>{{'BOARDS.SEARCH_BOARDS_INPUT_PLACEHOLDER' | translate}}</label>
+        <input ng-model="vm.searchBoardTitle">
+    </md-input-container>
+</form>
 
-    <md-list ng-cloak>
-        <md-subheader class="md-no-sticky">{{'BOARDS.CURRENT_BOARDS' | translate}}</md-subheader>
-        <md-list-item ng-repeat="board in vm.boards | filter: vm.searchBoardTitle"
-                      ng-click="vm.selectBoard(board)">
-            <md-icon>check_circle</md-icon>
-            <p>{{board.title}}</p>
-        </md-list-item>
-    </md-list>
-    <form name="createBoard" ng-show="vm.inCreatingBoard">
-        <md-input-container class="md-block">
-            <label>{{'BOARDS.TYPE_NEW_BOARD_TITLE' | translate}}</label>
-            <input type="text" ng-model="vm.newBoard.title">
-        </md-input-container>
-        <md-button class="md-primary md-raised"
-                   aria-label="{{'BOARDS.ADD_BOARD' | translate}}"
-                   translate="BOARDS.ADD_BOARD"
-                   ng-show="vm.inCreatingBoard"
-                   ng-click="vm.addBoard()"></md-button>
-        <md-button class="md-icon-button"
-                   ng-show="vm.inCreatingBoard"
-                   aria-label="{{'CANCEL_TEXT' | translate}}"
-                   ng-click="vm.cancelCreatingBoard()">
-            <md-icon>close</md-icon>
-        </md-button>
-    </form>
-    <md-list ng-hide="vm.inCreatingBoard">
-        <md-subheader class="md-no-sticky">{{'BOARDS.BOARD_ACTIONS' | translate}}</md-subheader>
+<md-list ng-cloak>
+    <md-subheader class="md-no-sticky">{{'BOARDS.CURRENT_BOARDS' | translate}}</md-subheader>
+    <md-list-item ng-repeat="board in vm.boards | filter: vm.searchBoardTitle"
+                  ng-click="vm.selectBoard(board)">
+        <md-icon>check_circle</md-icon>
+        <p>{{board.title}}</p>
+    </md-list-item>
+</md-list>
+<form name="createBoard" ng-show="vm.inCreatingBoard">
+    <md-input-container class="md-block">
+        <label>{{'BOARDS.TYPE_NEW_BOARD_TITLE' | translate}}</label>
+        <input type="text" ng-model="vm.newBoard.title">
+    </md-input-container>
+    <md-button class="md-primary md-raised"
+               aria-label="{{'BOARDS.ADD_BOARD' | translate}}"
+               translate="BOARDS.ADD_BOARD"
+               ng-show="vm.inCreatingBoard"
+               ng-click="vm.addBoard()"></md-button>
+    <md-button class="md-icon-button"
+               ng-show="vm.inCreatingBoard"
+               aria-label="{{'CANCEL_TEXT' | translate}}"
+               ng-click="vm.cancelCreatingBoard()">
+        <md-icon>close</md-icon>
+    </md-button>
+</form>
+<md-list ng-hide="vm.inCreatingBoard">
+    <md-subheader class="md-no-sticky">{{'BOARDS.BOARD_ACTIONS' | translate}}</md-subheader>
 
-        <md-list-item ng-click="vm.showCreateBoardForm()">
-            <md-icon>create</md-icon>
-            <p>{{'BOARDS.CREATE_BOARD' | translate}}</p>
-        </md-list-item>
-    </md-list>
-</md-content>
+    <md-list-item ng-click="vm.showCreateBoardForm()">
+        <md-icon>create</md-icon>
+        <p>{{'BOARDS.CREATE_BOARD' | translate}}</p>
+    </md-list-item>
+</md-list>
