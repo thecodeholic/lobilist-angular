@@ -6,13 +6,16 @@
     "BOARDS_TITLE": "Boards",
     "LOGOUT": "Logout"
   },
-  "LOBILIST.BOARD": {
+  "BOARD": {
     "ADD_NEW_LIST_TEXT": "Add a list"
   },
-  "LOBILIST.LIST": {
+  "LIST": {
     "ADD_NEW_CARD_TEXT": "Add a card",
     "SAVE_NEW_CARD_TEXT": "Add",
     "NEW_CARD_PLACEHOLDER": "New card title",
-    "ARCHIVE_LIST_TEXT": "Archive"
-  }
+    "ARCHIVE_LIST_TEXT": "Archive",
+    "CANCEL_CARD": "Cancel"
+  },
+  "ADD_TEXT": "Add",
+  "CANCEL_TEXT": "Cancel"
 }

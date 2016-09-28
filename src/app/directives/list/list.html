@@ -8,11 +8,11 @@
                         <md-icon>more_vert</md-icon>
                     </md-button>
                     <md-menu-content width="4">
-                        <md-menu-item >
-                            <md-button ng-click="vm.archiveList(list)">
+                        <md-menu-item>
+                            <md-button ng-click="vm.archiveList(vm.list)">
                                 <div layout="row" flex>
                                     <md-icon>archive</md-icon>
-                                    <p flex>{{'LOBILIST.LIST.ARCHIVE_LIST_TEXT' | translate}}</p>
+                                    <p flex>{{'LIST.ARCHIVE_LIST_TEXT' | translate}}</p>
                                 </div>
                             </md-button>
                         </md-menu-item>
@@ -25,23 +25,33 @@
                 <lobilist-card ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
             </div>
             <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard" name="newCardForm">
-                <md-input-container class="md-block">
-                    <textarea ng-model="vm.newCard.title" md-maxlength="150" rows="3" md-select-on-focus
-                              placeholder="{{ 'LOBILIST.LIST.NEW_CARD_PLACEHOLDER' | translate }}">
+                <md-input-container md-no-float="" class="md-block">
+                    <textarea ng-keyup="vm.addCard($event)"
+                            ng-model="vm.newCard.title"
+                              md-maxlength="150"
+                              rows="3"
+                              md-select-on-focus
+                              placeholder="{{ 'LIST.NEW_CARD_PLACEHOLDER' | translate }}">
                     </textarea>
                 </md-input-container>
             </form>
 
             <md-card-actions layout="row">
-                <md-button translate="LOBILIST.LIST.ADD_NEW_CARD_TEXT"
+                <md-button translate="LIST.ADD_NEW_CARD_TEXT"
                            ng-show="!vm.addingNewCard"
-                           aria-label="{{'LOBILIST.LIST.ADD_NEW_CARD_TEXT' | translate}}"
+                           aria-label="{{'LIST.ADD_NEW_CARD_TEXT' | translate}}"
                            ng-click="vm.showAddNewCardForm()"></md-button>
                 <md-button class="md-primary md-raised"
-                           translate="LOBILIST.LIST.SAVE_NEW_CARD_TEXT"
+                           translate="LIST.SAVE_NEW_CARD_TEXT"
                            ng-show="vm.addingNewCard"
-                           aria-label="{{'LOBILIST.LIST.SAVE_NEW_CARD_TEXT' | translate}}"
-                           ng-click="vm.addCard()"></md-button>
+                           aria-label="{{'LIST.SAVE_NEW_CARD_TEXT' | translate}}"
+                           ng-click="vm.addCard($event)"></md-button>
+                <md-button class="md-icon-button"
+                           ng-show="vm.addingNewCard"
+                           aria-label="{{'LIST.CANCEL_CARD' | translate}}"
+                           ng-click="vm.cancelNewCard()">
+                    <md-icon>close</md-icon>
+                </md-button>
             </md-card-actions>
         </md-card-content>
     </md-card>

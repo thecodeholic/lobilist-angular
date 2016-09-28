@@ -29,11 +29,11 @@
         }
 
         function getListsByBoardId(boardId) {
-            return boardId ? $firebaseArray(listsRef.child(boardId)) : [];
+            return boardId ? $firebaseArray(listsRef.child(boardId).orderByChild("position")) : [];
         }
 
         function getCardsByBoardAndListId(boardId, listId){
-            return boardId && listId ? $firebaseArray(cardsRef.child(boardId+"/"+listId)) : [];
+            return boardId && listId ? $firebaseArray(cardsRef.child(boardId+"/"+listId).orderByChild("position")) : [];
         }
     }
 })();
