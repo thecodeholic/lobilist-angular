@@ -1,10 +1,43 @@
-body{
+body {
   //background-color: @gray-lighter;
 }
-.lobilist-main{
-  height: 100%;
 
-  .boards-sidenav{
+.lobilist-main {
+  .boards-sidenav {
     width: 240px;
+  }
+}
+
+.lobi-board {
+  white-space: nowrap;
+
+  .add-new-list-wrapper {
+    vertical-align: top;
+    display: inline-block;
+    width: @list-width;
+    padding: @list-padding;
+
+    md-card {
+      md-card-content {
+        padding: 12px;
+      }
+      md-card-actions {
+        margin: 0;
+      }
+    }
+
+    form {
+      > md-input-container {
+        margin-top: 0;
+        .md-errors-spacer {
+          height: 0;
+          min-height: 0;
+        }
+      }
+    }
+
+    > button {
+      text-align: left;
+    }
   }
 }

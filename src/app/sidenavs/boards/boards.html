@@ -1,0 +1,15 @@
+<md-content layout-padding>
+    <form name="searchBoardForm">
+        <md-input-container class="md-block">
+            <label>{{'MAIN.SEARCH_BOARDS_INPUT_PLACEHOLDER' | translate}}</label>
+            <input ng-model="vm.searchBoardTitle">
+        </md-input-container>
+    </form>
+
+    <md-list ng-cloak>
+        <md-list-item ng-repeat="board in vm.boards | filter: vm.searchBoardTitle"
+                      ng-click="vm.selectBoard(board)">
+            <p>{{board.title}}</p>
+        </md-list-item>
+    </md-list>
+</md-content>

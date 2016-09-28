@@ -20,15 +20,30 @@
                         controllerAs: 'vm'
                     }
                 },
-                // resolve: {
-                //     // controller will not be loaded until $requireSignIn resolves
-                //     // Auth refers to our $firebaseAuth wrapper in the factory below
-                //     "currentAuth": ["AuthService", function (AuthService) {
-                //         // $requireSignIn returns a promise so the resolve waits for it to complete
-                //         // If the promise is rejected, it will throw a $stateChangeError (see above)
-                //         return AuthService.$requireSignIn();
-                //     }]
-                // },
+                resolve: {
+                    Boards: ["BoardService", function (BoardService) {
+                        return BoardService.boards;
+                    }],
+                    Board: ["$stateParams", "FirebaseService", "BoardService", function ($stateParams, FirebaseService, BoardService) {
+                        var gg = {current: null};
+                        BoardService.boards.$loaded().then(function () {
+                            gg.current = $stateParams.boardId && BoardService.boards.$getRecord($stateParams.boardId);
+                            if (!gg.current) {
+                                gg.current = BoardService.boards[0];
+                            }
+                        });
+
+                        return gg;
+                    }],
+
+                    // controller will not be loaded until $requireSignIn resolves
+                    // Auth refers to our $firebaseAuth wrapper in the factory below
+                    "currentAuth": ["AuthService", function (AuthService) {
+                        // $requireSignIn returns a promise so the resolve waits for it to complete
+                        // If the promise is rejected, it will throw a $stateChangeError (see above)
+                        return AuthService.$requireSignIn();
+                    }]
+                },
                 bodyClass: 'dashboard'
             });
 

@@ -20,6 +20,10 @@
                     'toolbar@app': {
                         templateUrl: 'app/toolbar/toolbar.html',
                         controller: 'ToolbarController as vm'
+                    },
+                    'boards@app': {
+                        templateUrl: 'app/sidenavs/boards/boards.html',
+                        controller: 'BoardsController as vm'
                     }
                 }
             });

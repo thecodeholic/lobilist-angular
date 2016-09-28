@@ -6,28 +6,36 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController($rootScope, $state, $stateParams, $scope, FirebaseService) {
+    function DashboardController($rootScope, $state, $stateParams, $scope, $timeout, FirebaseService, BoardService) {
         var vm = this;
 
+        console.log($stateParams.boardId);
         // Data
+        vm.addingNewList = false;
+        vm.newList = {};
         vm.selectedBoard = null;
-        vm.boards = FirebaseService.getBoards();
+        vm.boards = BoardService.boards;
+        vm.lists = [];
+
 
         // Methods
         vm.selectBoard = selectBoard;
+        vm.showAddNewListForm = showAddNewListForm;
+        vm.cancelNewList = cancelNewList;
+        vm.addList = addList;
 
         init();
 
         /////////////
 
         function init() {
+
             vm.boards.$loaded().then(function(){
-                if (!$stateParams.boardId){
-                    vm.selectedBoard = vm.boards[0];
-                    updateState();
-                } else {
-                    vm.selectedBoard = vm.boards.$getRecord($stateParams.boardId);
+                var board = $stateParams.boardId && vm.boards.$getRecord($stateParams.boardId);
+                if (!board){
+                    board = vm.boards[0];
                 }
+                selectBoard(board);
             });
             var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
                  if (!user){
@@ -38,12 +46,54 @@
         }
 
         function selectBoard(board) {
+            if (!board){
+                return;
+            }
             vm.selectedBoard = board;
             updateState();
+            vm.lists = FirebaseService.getListsByBoardId(vm.selectedBoard.$id);
+            console.log(vm.lists);
         }
 
         function updateState(){
             $state.go($state.current, {boardId: vm.selectedBoard.$id}, {notify: false});
+        }
+
+        function showAddNewListForm() {
+            vm.addingNewList = true;
+
+            $timeout(function () {
+                document.getElementById('new-list-textfield').focus();
+                // console.log($document.find('#newListTextfield'));
+                // $document.getElementById('newListTextfield').focus();
+            }, 40);
+        }
+
+        function cancelNewList() {
+            vm.addingNewList = false;
+        }
+
+        function addList($event) {
+            $event.preventDefault();
+
+            // Prevent the reply() for key presses rather than the"enter" key.
+            if ($event && $event.keyCode !== 13) {
+                return;
+            }
+
+            console.log("adding new list");
+            vm.addingNewList = false;
+            vm.newList.position = getMaxPosition() + 1;
+            vm.lists.$add(vm.newList);
+            vm.newList = {};
+        }
+
+        function getMaxPosition() {
+            var max = 0;
+            angular.forEach(vm.lists, function (list) {
+                max = Math.max(max, list.position);
+            });
+            return max;
         }
 
     }
