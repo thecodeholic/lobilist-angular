@@ -9,10 +9,11 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($rootScope, $scope, $stateParams, $log, FirebaseService, CardService, ListService){
+    function ListController($rootScope, $scope, $stateParams, $timeout, FirebaseService, CardService, ListService) {
         var vm = this;
 
         // Data
+        vm.inTitleEditing = false;
         vm.addingNewCard = false;
         vm.selectedBoard = FirebaseService.getBoardById($stateParams.boardId);
         vm.lists = ListService.getListsByBoardId($stateParams.boardId);
@@ -25,23 +26,25 @@
         vm.addCard = addCard;
         vm.showAddNewCardForm = showAddNewCardForm;
         vm.cancelNewCard = cancelNewCard;
+        vm.startTitleEditing = startTitleEditing;
+        vm.inputTitleKeyup = inputTitleKeyup;
 
-        init ();
+        init();
 
-        function init(){
-            var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
-                 if (!user){
-                     vm.cards.$destroy();
-                 }
+        function init() {
+            var userStateChangeFn = $rootScope.$on('userStateChange', function ($event, user) {
+                if (!user) {
+                    vm.cards.$destroy();
+                }
             });
             $scope.$on('$destroy', userStateChangeFn);
         }
 
-        function archiveList(){
+        function archiveList() {
             ListService.deleteList(vm.list, vm.selectedBoard);
         }
 
-        function addCard($event){
+        function addCard($event) {
             $event.preventDefault();
 
             if ($event && $event.keyCode !== 13) {
@@ -54,12 +57,40 @@
             vm.newCard = {};
         }
 
-        function showAddNewCardForm(){
+        function showAddNewCardForm() {
             vm.addingNewCard = true;
         }
 
-        function cancelNewCard(){
+        function cancelNewCard() {
             vm.addingNewCard = false;
+        }
+
+        function startTitleEditing($event) {
+            if ($event && $event.button === 0){
+                vm.inTitleEditing = true;
+                vm.list.oldTitle = vm.list.title;
+                $timeout(function(){
+                    document.querySelector(".list-title-edit-form input").focus();
+                }, 100);
+            }
+        }
+
+        function inputTitleKeyup($event) {
+            if ($event.keyCode === 27) {
+                vm.inTitleEditing = false;
+                vm.list.title = vm.list.oldTitle;
+                delete vm.list.oldTitle;
+            } else if ($event.keyCode === 13) {
+                delete vm.list.oldTitle;
+
+                var index = vm.lists.$indexFor(vm.list.$id);
+                vm.lists[index].title = vm.list.title;
+                vm.lists
+                    .$save(index)
+                    .then(function () {
+                        vm.inTitleEditing = false;
+                    });
+            }
         }
 
         function getMaxPosition() {

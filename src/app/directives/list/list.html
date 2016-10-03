@@ -2,7 +2,13 @@
     <md-card class="lobilist-list">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{vm.list.title}}</span>
+                <form ng-show="vm.inTitleEditing" class="list-title-edit-form">
+                    <input type="text"
+                           ng-keyup="vm.inputTitleKeyup($event)"
+                           ng-model="vm.list.title"
+                           aria-label="{{'LIST.EDIT_TITLE' | translate}}">
+                </form>
+                <span ng-hide="vm.inTitleEditing" class="md-headline" ng-mouseup="vm.startTitleEditing($event)">{{vm.list.title}}</span>
                 <md-menu md-position-mode="target-right target">
                     <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                         <md-icon>more_vert</md-icon>
