@@ -1,11 +1,10 @@
-<div class="lobilist-list-wrapper">
-    <md-card class="lobilist-list">
+<md-card class="lobilist-list" as-sortable-item-handle>
         <md-card-title>
             <md-card-title-text>
                 <form ng-show="vm.inTitleEditing" class="list-title-edit-form">
                     <input type="text"
                            ng-keyup="vm.inputTitleKeyup($event)"
-                           ng-blur="vm.cancelTitleEditing($event)"
+                           ng-blur="vm.finishTitleEditing($event)"
                            ng-model="vm.list.title"
                            aria-label="{{'LIST.EDIT_TITLE' | translate}}">
                 </form>
@@ -62,4 +61,3 @@
             </md-card-actions>
         </md-card-content>
     </md-card>
-</div>

@@ -16,7 +16,21 @@
         vm.selectedBoard = null;
         vm.boards = BoardService.boards;
         vm.lists = [];
-
+        vm.sortOptions = {
+            //restrict move across columns. move only within column.
+            /*accept: function (sourceItemHandleScope, destSortableScope) {
+             return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+             },*/
+            itemMoved: function (event) {
+                console.log("item moved");
+                // event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.column.name;
+            },
+            orderChanged: function (event) {
+                console.log("changedd");
+            },
+            containment: '#board-wrapper',
+            containerPositioning: 'relative'
+        };
 
         // Methods
         vm.selectBoard = selectBoard;

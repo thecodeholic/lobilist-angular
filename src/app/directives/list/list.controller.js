@@ -101,6 +101,7 @@
             delete vm.list.oldTitle;
 
             var index = vm.lists.$indexFor(vm.list.$id);
+            console.log(vm.list);
             vm.lists[index].title = vm.list.title;
             vm.lists
                 .$save(index)

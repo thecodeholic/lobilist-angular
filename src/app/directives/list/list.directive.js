@@ -13,6 +13,7 @@
         return {
             restrict: 'AE',
             transclude: true,
+            // replace: true,
             templateUrl: 'app/directives/list/list.html',
             scope: {
                 list: '=lobiList'
