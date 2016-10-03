@@ -13,6 +13,7 @@
             'ngMaterial',
             'toastr',
             'pascalprecht.translate',
+            'as.sortable',
 
             'firebase',
 

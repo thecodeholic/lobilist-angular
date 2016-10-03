@@ -30,23 +30,23 @@
 
         function init() {
 
-            vm.boards.$loaded().then(function(){
+            vm.boards.$loaded().then(function () {
                 var board = $stateParams.boardId && vm.boards.$getRecord($stateParams.boardId);
-                if (!board){
+                if (!board) {
                     board = vm.boards[0];
                 }
                 selectBoard(board);
             });
-            var userStateChangeFn = $rootScope.$on('userStateChange', function($event, user){
-                 if (!user){
-                     vm.boards.$destroy();
-                 }
+            var userStateChangeFn = $rootScope.$on('userStateChange', function ($event, user) {
+                if (!user) {
+                    vm.boards.$destroy();
+                }
             });
             $scope.$on('$destroy', userStateChangeFn);
         }
 
         function selectBoard(board) {
-            if (!board){
+            if (!board) {
                 return;
             }
             vm.selectedBoard = board;
@@ -55,7 +55,7 @@
             console.log(vm.lists);
         }
 
-        function updateState(){
+        function updateState() {
             $state.go($state.current, {boardId: vm.selectedBoard.$id}, {notify: false});
         }
 
