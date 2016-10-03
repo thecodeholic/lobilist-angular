@@ -6,7 +6,7 @@
         .controller('DashboardController', DashboardController);
 
     /** @ngInject */
-    function DashboardController($rootScope, $state, $stateParams, $scope, $timeout, FirebaseService, BoardService) {
+    function DashboardController($rootScope, $state, $stateParams, $scope, $timeout, ListService, BoardService) {
         var vm = this;
 
         console.log($stateParams.boardId);
@@ -51,7 +51,7 @@
             }
             vm.selectedBoard = board;
             updateState();
-            vm.lists = FirebaseService.getListsByBoardId(vm.selectedBoard.$id);
+            vm.lists = ListService.getListsByBoardId(vm.selectedBoard.$id);
             console.log(vm.lists);
         }
 

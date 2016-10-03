@@ -9,14 +9,14 @@
         .factory('CardService', CardService);
 
     /** @ngInject */
-    function CardService(FirebaseService) {
+    function CardService(FirebaseService, $firebaseArray) {
 
         return {
-            getCards: getCards
+            getCardsByBoardAndListId: getCardsByBoardAndListId
         };
 
-        function getCards(boardId, listId){
-            return FirebaseService.getCardsByBoardAndListId(boardId, listId);
+        function getCardsByBoardAndListId(boardId, listId){
+            return boardId && listId ? $firebaseArray(FirebaseService.cardsRef.child(boardId+"/"+listId).orderByChild("position")) : [];
         }
 
     }

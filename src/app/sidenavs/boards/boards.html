@@ -9,14 +9,15 @@
     <md-subheader class="md-no-sticky">{{'BOARDS.CURRENT_BOARDS' | translate}}</md-subheader>
     <md-list-item ng-repeat="board in vm.boards | filter: vm.searchBoardTitle"
                   ng-click="vm.selectBoard(board)">
-        <md-icon>check_circle</md-icon>
+        <!--<md-icon>check_circle</md-icon>-->
         <p>{{board.title}}</p>
+        <md-icon class="md-secondary" ng-click="vm.deleteBoard($event, board)" aria-label="{{'BOARDS.DELETE' | translate}}">delete</md-icon>
     </md-list-item>
 </md-list>
-<form name="createBoard" ng-show="vm.inCreatingBoard">
+<form name="createBoard" ng-show="vm.inCreatingBoard" class="add-new-board-form">
     <md-input-container class="md-block">
         <label>{{'BOARDS.TYPE_NEW_BOARD_TITLE' | translate}}</label>
-        <input type="text" ng-model="vm.newBoard.title">
+        <input ng-keyup="vm.addBoard($event)" type="text" ng-model="vm.newBoard.title">
     </md-input-container>
     <md-button class="md-primary md-raised"
                aria-label="{{'BOARDS.ADD_BOARD' | translate}}"

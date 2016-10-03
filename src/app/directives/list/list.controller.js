@@ -9,14 +9,15 @@
         .controller('ListController', ListController);
 
     /** @ngInject */
-    function ListController($rootScope, $scope, $stateParams, $log, FirebaseService, CardService){
+    function ListController($rootScope, $scope, $stateParams, $log, FirebaseService, CardService, ListService){
         var vm = this;
 
         // Data
         vm.addingNewCard = false;
-        vm.lists = FirebaseService.getListsByBoardId($stateParams.boardId);
+        vm.selectedBoard = FirebaseService.getBoardById($stateParams.boardId);
+        vm.lists = ListService.getListsByBoardId($stateParams.boardId);
         vm.list = $scope.list;
-        vm.cards = CardService.getCards($stateParams.boardId, vm.list.$id);
+        vm.cards = CardService.getCardsByBoardAndListId($stateParams.boardId, vm.list.$id);
         vm.newCard = {};
 
         // Methods
@@ -37,13 +38,12 @@
         }
 
         function archiveList(){
-            vm.lists.$remove(vm.lists.$indexFor(vm.list.$id));
+            ListService.deleteList(vm.list, vm.selectedBoard);
         }
 
         function addCard($event){
             $event.preventDefault();
 
-            // Prevent the reply() for key presses rather than the"enter" key.
             if ($event && $event.keyCode !== 13) {
                 return;
             }

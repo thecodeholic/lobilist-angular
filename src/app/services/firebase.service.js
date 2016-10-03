@@ -19,10 +19,9 @@
             rootRef: rootRef,
             boardsRef: boardsRef,
             listsRef: listsRef,
+            cardsRef: cardsRef,
             getBoards: getBoards,
-            getBoardById: getBoardById,
-            getListsByBoardId: getListsByBoardId,
-            getCardsByBoardAndListId: getCardsByBoardAndListId
+            getBoardById: getBoardById
         };
 
         function getBoards() {
@@ -33,12 +32,5 @@
             return $firebaseObject(boardsRef.child(boardId));
         }
 
-        function getListsByBoardId(boardId) {
-            return $firebaseArray(listsRef.child(boardId).orderByChild("position"));
-        }
-
-        function getCardsByBoardAndListId(boardId, listId){
-            return boardId && listId ? $firebaseArray(cardsRef.child(boardId+"/"+listId).orderByChild("position")) : [];
-        }
     }
 })();

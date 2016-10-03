@@ -12,11 +12,15 @@
     function BoardService(FirebaseService) {
         var boards = FirebaseService.getBoards();
 
-        boards.$loaded().then(function(){
-            console.log(arguments, "loadedddddddd");
-        });
         return {
-            boards : boards
+            boards : boards,
+            deleteBoard: deleteBoard
         };
+
+        function deleteBoard(board){
+            FirebaseService.cardsRef.child(board.$id).remove();
+            FirebaseService.listsRef.child(board.$id).remove();
+            boards.$remove(boards.$indexFor(board.$id));
+        }
     }
 })();

@@ -5,7 +5,10 @@
     "BOARD_ACTIONS": "Actions",
     "CREATE_BOARD": "Create a new board",
     "ADD_BOARD": "Add a board",
-    "TYPE_NEW_BOARD_TITLE": "Type title for a new board"
+    "TYPE_NEW_BOARD_TITLE": "Type title for a new board",
+    "DELETE_CONFIRM_TITLE": "Delete Board: {{boardName}}",
+    "DELETE_BOARD_CONFIRM_CONTENT": "Are you sure you want to delete this board?",
+    "DELETE": "Delete Board"
   },
   "TOOLBAR": {
     "BOARDS_TITLE": "Boards",

@@ -9,7 +9,7 @@
         .controller('BoardsController', BoardsController);
 
     /** @ngInject */
-    function BoardsController($state, BoardService, $mdSidenav) {
+    function BoardsController($state, BoardService, UtilService, $translate, $mdSidenav) {
         var vm = this;
 
         // Data
@@ -23,6 +23,7 @@
         vm.showCreateBoardForm = showCreateBoardForm;
         vm.addBoard = addBoard;
         vm.cancelCreatingBoard = cancelCreatingBoard;
+        vm.deleteBoard = deleteBoard;
 
         init();
 
@@ -41,7 +42,13 @@
             vm.inCreatingBoard = true;
         }
 
-        function addBoard() {
+        function addBoard($event) {
+            $event.preventDefault();
+
+            if ($event && $event.keyCode !== 13) {
+                return;
+            }
+
             vm.boards.$add(vm.newBoard)
                 .then(function (res) {
                     selectBoard(vm.boards.$getRecord(res.key));
@@ -52,6 +59,21 @@
 
         function cancelCreatingBoard() {
             vm.inCreatingBoard = false;
+        }
+
+        function deleteBoard($event, board) {
+            $event.stopPropagation();
+
+            UtilService
+                .showConfirm(
+                    $translate.instant("BOARDS.DELETE_CONFIRM_TITLE", {boardName: board.title}),
+                    $translate.instant("BOARDS.DELETE_BOARD_CONFIRM_CONTENT")
+                )
+                .then(function successCallback(result) {
+                    if (result){
+                        BoardService.deleteBoard(board);
+                    }
+                });
         }
     }
 })();
