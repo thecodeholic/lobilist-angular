@@ -1,7 +1,9 @@
 <div id="board-wrapper" class="lobi-board" as-sortable="vm.sortOptions" ng-model="vm.lists">
 
     <div ng-repeat="list in vm.lists" as-sortable-item class="lobilist-list-wrapper">
-        <div lobilist-list lobi-list="list"></div>
+        <div as-sortable-item-handle>
+            <div lobilist-list lobi-list="list"></div>
+        </div>
     </div>
     <div class="add-new-list-wrapper">
         <md-card ng-show="vm.addingNewList">

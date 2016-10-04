@@ -44,6 +44,7 @@
         vm.cancelTitleEditing = cancelTitleEditing;
         vm.finishTitleEditing = finishTitleEditing;
         vm.inputTitleKeyup = inputTitleKeyup;
+        vm.onListMouseDown = onListMouseDown;
 
         init();
 
@@ -115,6 +116,13 @@
                 cancelTitleEditing();
             } else if ($event.keyCode === 13) {
                 finishTitleEditing();
+            }
+        }
+
+        function onListMouseDown($event) {
+            if (vm.inTitleEditing){
+                // $event.preventDefault();
+                $event.stopPropagation();
             }
         }
 

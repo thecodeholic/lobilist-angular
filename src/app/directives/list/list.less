@@ -70,9 +70,15 @@
 }
 
 .as-sortable-placeholder {
-  background-color: red;
-  display: inline-block;
+  background-color: @gray-light;
+  display: inline-block !important;
   vertical-align: top;
   white-space: normal;
   margin: @list-margin;
+}
+
+.as-sortable-dragging{
+  .lobilist-list-wrapper{
+    //.box-shadow(@whiteframe-shadow-7dp);
+  }
 }

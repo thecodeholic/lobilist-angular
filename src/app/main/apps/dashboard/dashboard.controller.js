@@ -26,7 +26,13 @@
                 // event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.column.name;
             },
             orderChanged: function (event) {
-                console.log("changedd");
+                // console.log("changedd");
+                // console.log(arguments);
+                var oldIndex = event.source.index,
+                    newIndex = event.dest.index;
+
+                ListService.updatePosition(oldIndex, newIndex);
+                // console.log(oldIndex, newIndex);
             },
             containment: '#board-wrapper',
             containerPositioning: 'relative'

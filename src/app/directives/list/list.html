@@ -1,37 +1,37 @@
-<md-card class="lobilist-list" as-sortable-item-handle>
-        <md-card-title>
-            <md-card-title-text>
-                <form ng-show="vm.inTitleEditing" class="list-title-edit-form">
-                    <input type="text"
-                           ng-keyup="vm.inputTitleKeyup($event)"
-                           ng-blur="vm.finishTitleEditing($event)"
-                           ng-model="vm.list.title"
-                           aria-label="{{'LIST.EDIT_TITLE' | translate}}">
-                </form>
-                <span ng-hide="vm.inTitleEditing" class="md-headline" ng-mouseup="vm.startTitleEditing($event)">{{vm.list.title}}</span>
-                <md-menu md-position-mode="target-right target">
-                    <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                        <md-icon>more_vert</md-icon>
-                    </md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item>
-                            <md-button ng-click="vm.archiveList(vm.list)">
-                                <div layout="row" flex>
-                                    <md-icon>archive</md-icon>
-                                    <p flex>{{'LIST.ARCHIVE_LIST_TEXT' | translate}}</p>
-                                </div>
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <div class="lobilist-cards-wrapper">
-                <lobilist-card ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
-            </div>
-            <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard" name="newCardForm">
-                <md-input-container md-no-float="" class="md-block">
+<md-card class="lobilist-list" ng-mousedown="vm.onListMouseDown($event)">
+    <md-card-title>
+        <md-card-title-text>
+            <form ng-show="vm.inTitleEditing" class="list-title-edit-form">
+                <input type="text"
+                       ng-keyup="vm.inputTitleKeyup($event)"
+                       ng-blur="vm.finishTitleEditing($event)"
+                       ng-model="vm.list.title"
+                       aria-label="{{'LIST.EDIT_TITLE' | translate}}">
+            </form>
+            <span ng-hide="vm.inTitleEditing" class="md-headline" ng-mouseup="vm.startTitleEditing($event)">{{vm.list.title}}</span>
+            <md-menu md-position-mode="target-right target">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                    <md-icon>more_vert</md-icon>
+                </md-button>
+                <md-menu-content width="4">
+                    <md-menu-item>
+                        <md-button ng-click="vm.archiveList(vm.list)">
+                            <div layout="row" flex>
+                                <md-icon>archive</md-icon>
+                                <p flex>{{'LIST.ARCHIVE_LIST_TEXT' | translate}}</p>
+                            </div>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <div class="lobilist-cards-wrapper">
+            <lobilist-card ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
+        </div>
+        <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard" name="newCardForm">
+            <md-input-container md-no-float="" class="md-block">
                     <textarea ng-keyup="vm.addCard($event)"
                               ng-model="vm.newCard.title"
                               md-maxlength="150"
@@ -39,25 +39,25 @@
                               md-select-on-focus
                               placeholder="{{ 'LIST.NEW_CARD_PLACEHOLDER' | translate }}">
                     </textarea>
-                </md-input-container>
-            </form>
+            </md-input-container>
+        </form>
 
-            <md-card-actions layout="row">
-                <md-button translate="LIST.ADD_NEW_CARD_TEXT"
-                           ng-show="!vm.addingNewCard"
-                           aria-label="{{'LIST.ADD_NEW_CARD_TEXT' | translate}}"
-                           ng-click="vm.showAddNewCardForm()"></md-button>
-                <md-button class="md-primary md-raised"
-                           translate="LIST.SAVE_NEW_CARD_TEXT"
-                           ng-show="vm.addingNewCard"
-                           aria-label="{{'LIST.SAVE_NEW_CARD_TEXT' | translate}}"
-                           ng-click="vm.addCard($event)"></md-button>
-                <md-button class="md-icon-button"
-                           ng-show="vm.addingNewCard"
-                           aria-label="{{'LIST.CANCEL_CARD' | translate}}"
-                           ng-click="vm.cancelNewCard()">
-                    <md-icon>close</md-icon>
-                </md-button>
-            </md-card-actions>
-        </md-card-content>
-    </md-card>
+        <md-card-actions layout="row">
+            <md-button translate="LIST.ADD_NEW_CARD_TEXT"
+                       ng-show="!vm.addingNewCard"
+                       aria-label="{{'LIST.ADD_NEW_CARD_TEXT' | translate}}"
+                       ng-click="vm.showAddNewCardForm()"></md-button>
+            <md-button class="md-primary md-raised"
+                       translate="LIST.SAVE_NEW_CARD_TEXT"
+                       ng-show="vm.addingNewCard"
+                       aria-label="{{'LIST.SAVE_NEW_CARD_TEXT' | translate}}"
+                       ng-click="vm.addCard($event)"></md-button>
+            <md-button class="md-icon-button"
+                       ng-show="vm.addingNewCard"
+                       aria-label="{{'LIST.CANCEL_CARD' | translate}}"
+                       ng-click="vm.cancelNewCard()">
+                <md-icon>close</md-icon>
+            </md-button>
+        </md-card-actions>
+    </md-card-content>
+</md-card>

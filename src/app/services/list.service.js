@@ -14,7 +14,8 @@
 
         return {
             getListsByBoardId: getListsByBoardId,
-            deleteList: deleteList
+            deleteList: deleteList,
+            updatePosition: updatePosition
         };
 
         function getListsByBoardId(boardId) {
@@ -31,6 +32,10 @@
             var lists = boardListsMap[board.$id];
             FirebaseService.cardsRef.child(board.$id).child(list.$id).remove();
             return lists.$remove(lists.$indexFor(list.$id));
+        }
+
+        function updatePosition(oldPosition, newPosition){
+
         }
     }
 })();
