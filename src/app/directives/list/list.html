@@ -27,8 +27,12 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-content>
-        <div class="lobilist-cards-wrapper">
-            <lobilist-card ng-repeat="card in vm.cards" lobi-card="card"></lobilist-card>
+        <div id="cards-wrapper" class="lobilist-cards-wrapper" as-sortable="vm.sortOptions" ng-model="vm.cards">
+            <div ng-repeat="card in vm.cards" as-sortable-item class="lobilist-card-wrapper">
+                <div as-sortable-item-handle>
+                    <lobilist-card lobi-card="card"></lobilist-card>
+                </div>
+            </div>
         </div>
         <form action="#" class="add-new-card-form" ng-show="vm.addingNewCard" name="newCardForm">
             <md-input-container md-no-float="" class="md-block">
