@@ -9,7 +9,6 @@
     function DashboardController($rootScope, $state, $stateParams, $scope, $timeout, ListService, BoardService) {
         var vm = this;
 
-        console.log($stateParams.boardId);
         // Data
         vm.addingNewList = false;
         vm.newList = {};
@@ -26,13 +25,7 @@
                 // event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.column.name;
             },
             orderChanged: function (event) {
-                // console.log("changedd");
-                // console.log(arguments);
-                var oldIndex = event.source.index,
-                    newIndex = event.dest.index;
-
-                ListService.updatePosition(oldIndex, newIndex);
-                // console.log(oldIndex, newIndex);
+                ListService.updatePosition(vm.selectedBoard, event.source.index, event.dest.index);
             },
             containment: '#board-wrapper',
             containerPositioning: 'relative'

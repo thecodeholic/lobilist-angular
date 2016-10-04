@@ -19,13 +19,9 @@
         };
 
         function getListsByBoardId(boardId) {
-            var lists = $firebaseArray(FirebaseService.listsRef.child(boardId).orderByChild("position"));
+            boardListsMap[boardId] = $firebaseArray(FirebaseService.listsRef.child(boardId).orderByChild("position"));
 
-            lists.$loaded().then(function(){
-                boardListsMap[boardId] = lists;
-            });
-
-            return lists;
+            return boardListsMap[boardId];
         }
 
         function deleteList(list, board) {
@@ -34,8 +30,23 @@
             return lists.$remove(lists.$indexFor(list.$id));
         }
 
-        function updatePosition(oldPosition, newPosition){
+        function updatePosition(board, oldIndex, newIndex){
+            var lists = boardListsMap[board.$id],
+                i;
 
+            if (oldIndex > newIndex){
+                for (i = oldIndex - 1; i >=newIndex; i--){
+                    lists[i].position++;
+                    lists.$save(i);
+                }
+            } else {
+                for (i = oldIndex + 1; i <=newIndex; i++){
+                    lists[i].position--;
+                    lists.$save(i);
+                }
+            }
+            lists[oldIndex].position = newIndex + 1;
+            lists.$save(oldIndex);
         }
     }
 })();
