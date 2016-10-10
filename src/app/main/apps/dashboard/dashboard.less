@@ -2,8 +2,23 @@ body {
   //background-color: @gray-lighter;
 }
 
-.lobi-board {
+#board-wrapper {
+  position: relative;
   white-space: nowrap;
+
+  > .as-sortable-placeholder {
+    background-color: @gray-light;
+    display: inline-block !important;
+    vertical-align: top;
+    white-space: normal;
+    margin: @list-margin;
+  }
+
+  > .as-sortable-dragging {
+    .lobilist-list-wrapper {
+      //.box-shadow(@whiteframe-shadow-7dp);
+    }
+  }
 
   .add-new-list-wrapper {
     vertical-align: top;

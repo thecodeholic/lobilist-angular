@@ -3,9 +3,6 @@
   vertical-align: top;
   white-space: normal;
   margin: @list-margin;
-  .lobilist-cards-wrapper {
-    //margin-bottom: 8px;
-  }
   .lobilist-list {
     margin: 0;
     background-color: @gray-lighter;
@@ -67,18 +64,20 @@
       }
     }
   }
-}
 
-.as-sortable-placeholder {
-  background-color: @gray-light;
-  display: inline-block !important;
-  vertical-align: top;
-  white-space: normal;
-  margin: @list-margin;
-}
+  #cards-wrapper {
+    > .as-sortable-placeholder {
+      background-color: @gray-light;
+      display: inline-block !important;
+      vertical-align: top;
+      white-space: normal;
+      margin: @list-margin;
+    }
 
-.as-sortable-dragging{
-  .lobilist-list-wrapper{
-    //.box-shadow(@whiteframe-shadow-7dp);
+    > .as-sortable-dragging {
+      .lobilist-list-wrapper {
+        //.box-shadow(@whiteframe-shadow-7dp);
+      }
+    }
   }
 }
