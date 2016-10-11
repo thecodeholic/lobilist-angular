@@ -66,12 +66,12 @@
   }
 
   #cards-wrapper {
-    > .as-sortable-placeholder {
+    position: relative;
+    > .lobilist-card-wrapper,
+    > .as-sortable-placeholder{
+      margin-bottom: 12px;
       background-color: @gray-light;
-      display: inline-block !important;
-      vertical-align: top;
-      white-space: normal;
-      margin: @list-margin;
+      .box-shadow(2px 2px 2px rgba(0, 0, 0, 0.1));
     }
 
     > .as-sortable-dragging {

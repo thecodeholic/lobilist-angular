@@ -17,9 +17,10 @@
         vm.lists = [];
         vm.sortOptions = {
             //restrict move across columns. move only within column.
-            /*accept: function (sourceItemHandleScope, destSortableScope) {
-             return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
-             },*/
+            accept: function (sourceItemHandleScope, destSortableScope) {
+                // console.log(arguments);
+                return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+            },
             itemMoved: function (event) {
                 console.log("item moved");
                 // event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.column.name;
